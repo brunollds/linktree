@@ -62,6 +62,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Chip de recompensa removido da YesStyle e descrição cumulativa simplificada.
 - Cards de cupons redesenhados como tickets compactos com aba destacável para copiar o código.
 - Layout responsivo validado no modo mobile do navegador para a primeira publicação.
+- Primeira versão aprovada publicada no repositório GitHub `brunollds/linktree`.
 
 ### Design Studies
 

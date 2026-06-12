@@ -33,11 +33,11 @@
 - [x] Measurement ID `G-LDLH63KJMP` configurado localmente.
 - [x] Analytics mantido desativado por `VITE_GA_ENABLED=false`.
 - [x] Layout responsivo validado no modo mobile do DevTools.
+- [x] Versão aprovada enviada para `github.com/brunollds/linktree`.
 
 ## A Confirmar
 
 - [ ] Implementar consentimento antes de ativar a coleta do GA4.
-- [ ] Enviar a versão aprovada para o GitHub.
 - [ ] Configurar DNS/SSL de `link.emcasacomcecilia.com`.
 - [ ] Publicar em `link.emcasacomcecilia.com` na Hostinger.
 
