@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparativo de fundos | Em Casa com Cecília</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="gallery">
+      <header class="gallery-header">
+        <span class="eyebrow">Estudo visual</span>
+        <h1>Qual fundo combina melhor com a Cecília?</h1>
+        <p>
+          O conteúdo é o mesmo em todas as opções. Use os botões para comparar somente a
+          atmosfera, o contraste e o nível de atenção do fundo.
+        </p>
+      </header>
+
+      <nav class="theme-picker" aria-label="Escolha uma opção de fundo">
+        <button class="active" data-theme="organic">1. Orgânico estático</button>
+        <button data-theme="moving">2. Movimento lento</button>
+        <button data-theme="editorial">3. Textura editorial</button>
+        <button data-theme="aurora">4. Aurora suave</button>
+        <button data-theme="paper">5. Papel premium</button>
+        <button data-theme="photo">6. Imagem ambiental</button>
+      </nav>
+
+      <section class="comparison">
+        <aside class="theme-notes">
+          <span id="theme-number">Opção 1</span>
+          <h2 id="theme-name">Gradiente orgânico estático</h2>
+          <p id="theme-description">
+            Manchas suaves em verde e terracota mantêm a identidade sem competir com os links.
+          </p>
+          <dl>
+            <div>
+              <dt>Performance</dt>
+              <dd id="theme-performance">Excelente</dd>
+            </div>
+            <div>
+              <dt>Personalidade</dt>
+              <dd id="theme-personality">Acolhedora e premium</dd>
+            </div>
+            <div>
+              <dt>Minha leitura</dt>
+              <dd id="theme-verdict">Melhor equilíbrio geral</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <div class="phone-frame">
+          <div class="phone-screen theme-organic" id="phone-screen">
+            <div class="background-layer">
+              <div class="blob blob-one"></div>
+              <div class="blob blob-two"></div>
+              <div class="grain"></div>
+              <div class="aurora aurora-one"></div>
+              <div class="aurora aurora-two"></div>
+              <div class="photo-layer"></div>
+            </div>
+
+            <div class="profile-content">
+              <div class="profile">
+                <img src="./assets/avatar.jpg" alt="Cecília Mauad" />
+                <div>
+                  <span>@emcasacomcecilia</span>
+                  <h3>Cecília Mauad</h3>
+                  <p>Cupons, achados e conteúdo para uma casa com identidade.</p>
+                </div>
+              </div>
+
+              <div class="section-label">Links principais</div>
+
+              <a class="link-card featured" href="#">
+                <span class="icon">◌</span>
+                <span>
+                  <strong>Grupo WhatsApp</strong>
+                  <small>Promoções e cupons em primeira mão</small>
+                </span>
+                <b>↗</b>
+              </a>
+
+              <a class="link-card" href="#">
+                <span class="icon">⌂</span>
+                <span>
+                  <strong>Site Principal</strong>
+                  <small>Receitas, reviews e conteúdo completo</small>
+                </span>
+                <b>↗</b>
+              </a>
+
+              <a class="link-card" href="#">
+                <span class="icon">◇</span>
+                <span>
+                  <strong>DAMIE</strong>
+                  <small>Parceria especial e cupom CECILIA12</small>
+                </span>
+                <b>↗</b>
+              </a>
+
+              <div class="section-label offers-label">Ofertas do dia</div>
+              <div class="offer-row">
+                <article>
+                  <span>-30%</span>
+                  <div class="product-placeholder"></div>
+                  <strong>Achado para casa</strong>
+                  <small>R$ 129,90</small>
+                </article>
+                <article class="see-more">
+                  <b>↗</b>
+                  <strong>Ver todas</strong>
+                  <small>Dicas & Promoções</small>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Mockup independente. Nenhuma opção foi aplicada ao projeto principal.
+      </footer>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-06-12T22:13:19.168Z",
+  "videos": [
+    {
+      "id": "Jl7pBY7Xypg",
+      "platform": "YouTube",
+      "title": "Comprar o filtro sai mais caro que a coifa nova! 😡",
+      "description": "Tenho outros eletrodomésticos da Panasonic e adoro. A geladeira é ótima, custo-benefício s...",
+      "publishedAt": "2026-06-10T22:15:38Z",
+      "url": "https://www.youtube.com/watch?v=Jl7pBY7Xypg",
+      "accent": "#ff6b35",
+      "thumbnailUrl": "https://i.ytimg.com/vi/Jl7pBY7Xypg/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/Jl7pBY7Xypg/maxresdefault.jpg"
+    },
+    {
+      "id": "LqzR0wjLWqk",
+      "platform": "YouTube",
+      "title": "Sua tábua tem isso e você não sabia! 🧄",
+      "description": "O Bruno comprou uma tábua nova com lado de inox e lado de plástico. Até aí normal. Mas ela...",
+      "publishedAt": "2026-06-08T23:45:06Z",
+      "url": "https://www.youtube.com/watch?v=LqzR0wjLWqk",
+      "accent": "#ffd700",
+      "thumbnailUrl": "https://i.ytimg.com/vi/LqzR0wjLWqk/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/LqzR0wjLWqk/maxresdefault.jpg"
+    },
+    {
+      "id": "RxkmhX4tBnw",
+      "platform": "YouTube",
+      "title": "Fiz o Sanduíche do Elvis: Manteiga de Amendoim + Banana + Bacon (Incrível!)",
+      "description": "Você sabia que o Elvis Presley tinha um sanduíche que ele comia quase todos os dias? A rec...",
+      "publishedAt": "2026-06-07T23:15:29Z",
+      "url": "https://www.youtube.com/watch?v=RxkmhX4tBnw",
+      "accent": "#ffffff",
+      "thumbnailUrl": "https://i.ytimg.com/vi/RxkmhX4tBnw/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/RxkmhX4tBnw/maxresdefault.jpg"
+    },
+    {
+      "id": "nwhILpqjEYg",
+      "platform": "YouTube",
+      "title": "Air Fryer grudando gordura no plástico? Resolvi!",
+      "description": "Limpei minha Air Fryer todinha e o plástico ainda tava grudando de gordura. Sabe aquela se...",
+      "publishedAt": "2026-06-05T23:15:03Z",
+      "url": "https://www.youtube.com/watch?v=nwhILpqjEYg",
+      "accent": "#ffcfb8",
+      "thumbnailUrl": "https://i.ytimg.com/vi/nwhILpqjEYg/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/nwhILpqjEYg/maxresdefault.jpg"
+    },
+    {
+      "id": "g7KizrI7SPk",
+      "platform": "YouTube",
+      "title": "Detergente barato de lava-louças funciona? Testei!",
+      "description": "Meu marido comprou o detergente mais barato do mercado e eu quase surtei. Mas antes de bri...",
+      "publishedAt": "2026-06-03T23:30:29Z",
+      "url": "https://www.youtube.com/watch?v=g7KizrI7SPk",
+      "accent": "#f8e7a4",
+      "thumbnailUrl": "https://i.ytimg.com/vi/g7KizrI7SPk/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/g7KizrI7SPk/maxresdefault.jpg"
+    },
+    {
+      "id": "FqH490_4OW4",
+      "platform": "YouTube",
+      "title": "NUNCA Mais Compre Salgado! Faça Esse Lanche Congelado! 🥪✨",
+      "description": "Lanche da semana resolvido em minutos! 🥪❄️ Montei pão com carne moída temperada crua, con...",
+      "publishedAt": "2026-06-02T00:35:36Z",
+      "url": "https://www.youtube.com/watch?v=FqH490_4OW4",
+      "accent": "#dfe7ff",
+      "thumbnailUrl": "https://i.ytimg.com/vi/FqH490_4OW4/hqdefault.jpg",
+      "fallbackThumbnailUrl": "https://i.ytimg.com/vi/FqH490_4OW4/maxresdefault.jpg"
+    }
+  ]
+}
