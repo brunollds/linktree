@@ -12,9 +12,9 @@ export default function App() {
     <div className="paper-theme">
       <main className="relative z-10 min-h-screen flex flex-col items-center px-3 pb-8">
         <Header />
-        <BentoGrid />
-        <PromoFeed />
         <CouponSection />
+        <PromoFeed />
+        <BentoGrid />
         <YouTubeSection />
         <SocialLinks />
         <MediaKit />
