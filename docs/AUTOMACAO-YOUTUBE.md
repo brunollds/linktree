@@ -10,8 +10,8 @@ Em `Settings → Secrets and variables → Actions`, crie:
 
 - `YOUTUBE_API_KEY`: chave da YouTube Data API.
 - `YOUTUBE_CHANNEL_ID`: ID do canal.
-- `HOSTINGER_SSH_PRIVATE_KEY`: conteúdo completo da chave privada autorizada
-  na Hostinger (`id_ed25519`, sem a extensão `.pub`).
+- `HOSTINGER_SSH_PRIVATE_KEY_B64`: chave privada autorizada na Hostinger
+  convertida para Base64.
 
 Com GitHub CLI instalado e autenticado, os secrets podem ser cadastrados pelo
 terminal:
@@ -19,12 +19,18 @@ terminal:
 ```powershell
 gh secret set YOUTUBE_API_KEY
 gh secret set YOUTUBE_CHANNEL_ID
-Get-Content -Raw "$HOME\.ssh\id_ed25519" | gh secret set HOSTINGER_SSH_PRIVATE_KEY
+$bytes = [System.IO.File]::ReadAllBytes("$HOME\.ssh\id_ed25519")
+[Convert]::ToBase64String($bytes) | gh secret set HOSTINGER_SSH_PRIVATE_KEY_B64
 ```
 
-Sem GitHub CLI, use a página de secrets do repositório. Ao cadastrar a chave
-SSH pelo navegador, inclua desde `-----BEGIN OPENSSH PRIVATE KEY-----` até
-`-----END OPENSSH PRIVATE KEY-----`.
+Sem GitHub CLI, gere o valor e copie a saída para a página de secrets:
+
+```powershell
+$bytes = [System.IO.File]::ReadAllBytes("$HOME\.ssh\id_ed25519")
+[Convert]::ToBase64String($bytes)
+```
+
+O resultado deve ser uma única linha, sem espaços ou quebras.
 
 Não use o Measurement ID do Analytics como secret: o GA4 permanece desativado
 até a implementação do consentimento.

@@ -46,4 +46,4 @@
 
 - [ ] Validar os links e o botão de copiar em pelo menos um celular físico.
 - [ ] Implementar consentimento e ativar o GA4.
-- [ ] Cadastrar os três GitHub Actions secrets e executar o primeiro teste manual.
+- [ ] Cadastrar `HOSTINGER_SSH_PRIVATE_KEY_B64` e executar o primeiro teste manual.
