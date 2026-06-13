@@ -37,6 +37,7 @@
 - [x] DNS e SSL de `link.emcasacomcecilia.com` configurados.
 - [x] Build estático publicado na Hostinger.
 - [x] Produção validada com imagens, ofertas, cupons e vídeos.
+- [x] Workflow de sincronização e deploy criado para terça, quinta e sábado.
 
 ## A Confirmar
 
@@ -45,3 +46,4 @@
 
 - [ ] Validar os links e o botão de copiar em pelo menos um celular físico.
 - [ ] Implementar consentimento e ativar o GA4.
+- [ ] Cadastrar os três GitHub Actions secrets e executar o primeiro teste manual.

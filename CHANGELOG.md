@@ -66,6 +66,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Primeira versão publicada em `https://link.emcasacomcecilia.com`.
 - HTTPS, imagens, ofertas, cupons e vídeos validados em produção.
 - Seções “Links” e “Cupons” trocaram de posição na página.
+- Workflow agendado criado para sincronizar YouTube e publicar na Hostinger às terças, quintas e sábados.
 
 ### Design Studies
 
