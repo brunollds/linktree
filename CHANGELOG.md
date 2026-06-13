@@ -67,6 +67,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - HTTPS, imagens, ofertas, cupons e vídeos validados em produção.
 - Seções “Links” e “Cupons” trocaram de posição na página.
 - Workflow agendado criado para sincronizar YouTube e publicar na Hostinger às terças, quintas e sábados.
+- Workflow atualizado para Node 24 e configuração SSH resiliente sem dependência de `ssh-keyscan`.
 
 ### Design Studies
 
