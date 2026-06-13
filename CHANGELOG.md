@@ -63,6 +63,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Cards de cupons redesenhados como tickets compactos com aba destacável para copiar o código.
 - Layout responsivo validado no modo mobile do navegador para a primeira publicação.
 - Primeira versão aprovada publicada no repositório GitHub `brunollds/linktree`.
+- Primeira versão publicada em `https://link.emcasacomcecilia.com`.
+- HTTPS, imagens, ofertas, cupons e vídeos validados em produção.
 
 ### Design Studies
 

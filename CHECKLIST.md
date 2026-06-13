@@ -34,19 +34,13 @@
 - [x] Analytics mantido desativado por `VITE_GA_ENABLED=false`.
 - [x] Layout responsivo validado no modo mobile do DevTools.
 - [x] Versão aprovada enviada para `github.com/brunollds/linktree`.
+- [x] DNS e SSL de `link.emcasacomcecilia.com` configurados.
+- [x] Build estático publicado na Hostinger.
+- [x] Produção validada com imagens, ofertas, cupons e vídeos.
 
 ## A Confirmar
 
 - [ ] Implementar consentimento antes de ativar a coleta do GA4.
-- [ ] Configurar DNS/SSL de `link.emcasacomcecilia.com`.
-- [ ] Publicar em `link.emcasacomcecilia.com` na Hostinger.
-
-## Para Publicar Hoje
-
-1. Manter `VITE_GA_ENABLED=false` até implementar o banner de consentimento.
-2. Executar `npm run lint` e `npm run build`.
-3. Publicar `dist/` e validar HTTPS, ofertas e vídeos no domínio final.
-
 ## Pós-Publicação
 
 - [ ] Validar os links e o botão de copiar em pelo menos um celular físico.
