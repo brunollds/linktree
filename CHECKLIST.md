@@ -38,6 +38,7 @@
 - [x] Build estático publicado na Hostinger.
 - [x] Produção validada com imagens, ofertas, cupons e vídeos.
 - [x] Workflow de sincronização e deploy criado para terça, quinta e sábado.
+- [x] Sitemap, robots.txt e llms.txt publicados.
 
 ## A Confirmar
 

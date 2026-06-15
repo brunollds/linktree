@@ -69,6 +69,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Workflow agendado criado para sincronizar YouTube e publicar na Hostinger às terças, quintas e sábados.
 - Workflow atualizado para Node 24 e configuração SSH resiliente sem dependência de `ssh-keyscan`.
 - Chave SSH do workflow alterada para Base64 para preservar sua formatação no GitHub Secrets.
+- Arquivos `sitemap.xml`, `robots.txt` e `llms.txt` adicionados para mecanismos de busca e agentes de IA.
 
 ### Design Studies
 
