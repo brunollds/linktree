@@ -71,6 +71,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Chave SSH do workflow alterada para Base64 para preservar sua formatação no GitHub Secrets.
 - Arquivos `sitemap.xml`, `robots.txt` e `llms.txt` adicionados para mecanismos de busca e agentes de IA.
 - Meta tag de verificação do Bing Webmaster Tools adicionada.
+- Cupons Nestlé Nutre e I Wanna Sleep adicionados com logotipos oficiais.
+- Chip `5% OFF` restaurado no card da YesStyle.
 
 ### Design Studies
 
