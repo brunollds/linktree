@@ -70,9 +70,9 @@ export default function MediaKit() {
         <div className="flex items-center gap-3 mb-3.5">
           <span
             className="flex items-center justify-center w-10 h-10 rounded-xl"
-            style={{ background: 'rgba(255, 215, 0, 0.12)' }}
+            style={{ background: 'rgba(36, 74, 56, 0.11)' }}
           >
-            <FileText size={22} strokeWidth={1.5} style={{ color: '#ffd700' }} />
+            <FileText size={22} strokeWidth={1.6} style={{ color: '#244a38' }} />
           </span>
 
           <div className="flex flex-col flex-1">
@@ -96,8 +96,8 @@ export default function MediaKit() {
           <span
             className="flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1.5 rounded-lg"
             style={{
-              background: 'rgba(255, 215, 0, 0.12)',
-              color: '#ffd700',
+              background: 'rgba(36, 74, 56, 0.11)',
+              color: '#244a38',
             }}
           >
             <ExternalLink size={13} />
