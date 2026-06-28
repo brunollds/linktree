@@ -13,6 +13,7 @@ interface HighlightItem {
   iconBg: string;
   iconColor: string;
   tag: string;
+  attentionClass?: string;
   enabled?: boolean;
 }
 
@@ -26,6 +27,7 @@ const highlights: HighlightItem[] = [
     iconBg: 'rgba(37, 211, 102, 0.12)',
     iconColor: '#25D366',
     tag: 'Comunidade',
+    attentionClass: 'attention-whatsapp',
   },
   {
     href: brandLinks.site,
@@ -36,6 +38,7 @@ const highlights: HighlightItem[] = [
     iconBg: 'rgba(26, 77, 46, 0.15)',
     iconColor: '#4ade80',
     tag: 'Site',
+    attentionClass: 'attention-site',
   },
   {
     href: brandLinks.damie,
@@ -87,7 +90,9 @@ function BentoCard({ item, index }: { item: HighlightItem; index: number }) {
       href={item.href}
       target={item.href.startsWith('http') ? '_blank' : undefined}
       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      className={`${item.cardClass} main-link-card ${isActive ? 'is-active' : ''} flex items-center gap-3.5 px-4 py-3 w-full text-white no-underline cursor-pointer`}
+      className={`${item.cardClass} ${item.attentionClass ?? ''} main-link-card ${
+        isActive ? 'is-active' : ''
+      } flex items-center gap-3.5 px-4 py-3 w-full text-white no-underline cursor-pointer`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onFocus={() => setIsActive(true)}

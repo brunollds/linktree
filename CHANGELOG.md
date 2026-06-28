@@ -76,6 +76,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Badge percentual das ofertas movido para o topo da imagem para compactar os cards.
 - Encaixe dos logotipos dos cupons ajustado para preservar proporções das marcas.
 - Ícone e badge de acesso do Mídia Kit ajustados para verde mais legível.
+- Microanimação de respiração adicionada em sequência para cupons, WhatsApp e site principal.
 
 ### Design Studies
 
