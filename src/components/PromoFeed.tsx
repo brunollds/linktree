@@ -63,7 +63,10 @@ export default function PromoFeed() {
   };
 
   return (
-    <section ref={sectionRef} className="w-full pt-5 pb-1">
+    <section ref={sectionRef} className="w-full pt-5 pb-1" aria-labelledby="ofertas-title">
+      <h2 id="ofertas-title" className="sr-only">
+        Ofertas do Dia
+      </h2>
       <div className="flex items-center justify-between px-4 mb-3">
         <span className="section-tag promo-tag">
           <Zap size={11} strokeWidth={2} />
@@ -83,6 +86,7 @@ export default function PromoFeed() {
               cursor: canScrollLeft ? 'pointer' : 'default',
             }}
             disabled={!canScrollLeft}
+            aria-label="Ver ofertas anteriores"
           >
             <ChevronLeft size={14} />
           </button>
@@ -98,6 +102,7 @@ export default function PromoFeed() {
               cursor: canScrollRight ? 'pointer' : 'default',
             }}
             disabled={!canScrollRight}
+            aria-label="Ver próximas ofertas"
           >
             <ChevronRight size={14} />
           </button>
@@ -137,6 +142,7 @@ export default function PromoFeed() {
             rel="noopener noreferrer"
             className="flex-shrink-0 group cursor-pointer no-underline"
             style={{ width: '155px' }}
+            aria-label={`Ver oferta: ${promo.title}`}
             onClick={() =>
               trackEvent('click_offer', {
                 offer_id: promo.id,
@@ -194,7 +200,7 @@ export default function PromoFeed() {
                 {promo.image ? (
                   <img
                     src={promo.image}
-                    alt=""
+                    alt={`Imagem da oferta ${promo.title}`}
                     className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                     loading="lazy"
                     onError={(event) => {

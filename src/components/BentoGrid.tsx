@@ -90,6 +90,7 @@ function BentoCard({ item, index }: { item: HighlightItem; index: number }) {
       href={item.href}
       target={item.href.startsWith('http') ? '_blank' : undefined}
       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      aria-label={`${item.label}: ${item.description}`}
       className={`${item.cardClass} ${item.attentionClass ?? ''} main-link-card ${
         isActive ? 'is-active' : ''
       } flex items-center gap-3.5 px-4 py-3 w-full text-white no-underline cursor-pointer`}
@@ -153,7 +154,10 @@ export default function BentoGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full px-4 pt-3 pb-1">
+    <section ref={sectionRef} className="w-full px-4 pt-3 pb-1" aria-labelledby="links-title">
+      <h2 id="links-title" className="sr-only">
+        Links principais
+      </h2>
       <div className="flex justify-center mb-3">
           <span className="section-tag bento-tag">
           <Bell size={11} strokeWidth={2} />

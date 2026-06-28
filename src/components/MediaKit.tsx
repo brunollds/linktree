@@ -51,7 +51,10 @@ export default function MediaKit() {
   ];
 
   return (
-    <section className="w-full px-4 pt-4 pb-1">
+    <section className="w-full px-4 pt-4 pb-1" aria-labelledby="midia-kit-title">
+      <h2 id="midia-kit-title" className="sr-only">
+        Mídia Kit e contato comercial
+      </h2>
       <div className="flex justify-center mb-3">
         <span className="section-tag mediakit-tag">
           <FileText size={11} strokeWidth={2} />
@@ -65,6 +68,7 @@ export default function MediaKit() {
         target="_blank"
         rel="noopener noreferrer"
         className="mediakit-card block px-4 py-4 w-full text-white no-underline cursor-pointer"
+        aria-label="Acessar mídia kit do Em Casa com Cecília"
       >
         {/* Top row */}
         <div className="flex items-center gap-3 mb-3.5">
@@ -145,6 +149,7 @@ export default function MediaKit() {
       <a
         href={brandLinks.contactMailto}
         className="brand-contact"
+        aria-label={`Enviar e-mail para ${brandLinks.contactEmail}`}
         onClick={() =>
           trackEvent('click_contact_email', {
             link_url: brandLinks.contactMailto,

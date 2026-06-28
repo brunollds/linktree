@@ -72,7 +72,7 @@ export default function Header() {
         <img
           ref={avatarRef}
           src="/images/avatar.jpg"
-          alt="Cecília Mauad"
+          alt="Cecília Mauad do Em Casa com Cecília"
           className="profile-avatar relative h-[68px] w-[68px] rounded-full object-cover"
         />
       </div>
@@ -95,7 +95,10 @@ export default function Header() {
         >
           @emcasacomcecilia
         </a>
-        <h1 className="profile-name">Cecília Mauad</h1>
+        <h1 className="profile-name">
+          Cecília Mauad
+          <span className="sr-only"> | Em Casa com Cecília</span>
+        </h1>
         <p className="profile-slogan">Receitas fáceis que dão certo.</p>
       </div>
     </header>

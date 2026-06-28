@@ -12,6 +12,7 @@ interface Partner {
   interactionDescription: string;
   href: string;
   logo: string;
+  logoAlt: string;
 }
 
 const partners: Partner[] = [
@@ -24,6 +25,7 @@ const partners: Partner[] = [
     interactionDescription: '12% OFF na sua compra',
     href: brandLinks.damie,
     logo: '/images/logo-damie.jpg',
+    logoAlt: 'Logo da Damie para cupom CECILIA12',
   },
   {
     name: 'Dolce Gusto',
@@ -34,6 +36,7 @@ const partners: Partner[] = [
     interactionDescription: '5% OFF na sua compra',
     href: brandLinks.dolceGusto,
     logo: '/images/logo-dolcegusto.avif',
+    logoAlt: 'Logo da Dolce Gusto para cupom CECI',
   },
   {
     name: 'YesStyle',
@@ -44,6 +47,7 @@ const partners: Partner[] = [
     interactionDescription: 'Combine com qualquer cupom disponível',
     href: brandLinks.yesStyle,
     logo: '/images/logo-yesstyle.jpg',
+    logoAlt: 'Logo da YesStyle para código CECILIA010',
   },
   {
     name: 'Nestlé Nutre',
@@ -54,6 +58,7 @@ const partners: Partner[] = [
     interactionDescription: '5% OFF na sua compra',
     href: brandLinks.nestleNutre,
     logo: '/images/logo-nestle-nutre.png',
+    logoAlt: 'Logo da Nestlé Nutre para cupom CECI',
   },
   {
     name: 'I Wanna Sleep',
@@ -64,6 +69,7 @@ const partners: Partner[] = [
     interactionDescription: '10% OFF na sua compra',
     href: brandLinks.iWannaSleep,
     logo: '/images/logo-i-wanna-sleep.avif',
+    logoAlt: 'Logo da I Wanna Sleep para cupom CECIEMCASA',
   },
 ];
 
@@ -118,11 +124,12 @@ function CouponCard({ partner, index }: { partner: Partner; index: number }) {
         target="_blank"
         rel="noopener noreferrer"
         className="coupon-main"
+        aria-label={`Abrir ${partner.name} usando o código ${partner.couponCode}`}
         onFocus={() => setIsActive(true)}
         onBlur={() => setIsActive(false)}
       >
         <span className="coupon-logo">
-          <img src={partner.logo} alt={partner.name} loading="lazy" />
+          <img src={partner.logo} alt={partner.logoAlt} loading="lazy" />
         </span>
 
         <div className="coupon-content">
@@ -183,7 +190,10 @@ export default function CouponSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full px-4 pt-4 pb-1">
+    <section ref={sectionRef} className="w-full px-4 pt-4 pb-1" aria-labelledby="cupons-title">
+      <h2 id="cupons-title" className="sr-only">
+        Cupons da Cecília
+      </h2>
       <div className="flex justify-center mb-3">
         <span className="section-tag coupon-section-tag">
           <Percent size={11} strokeWidth={2} />

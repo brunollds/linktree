@@ -23,7 +23,7 @@ export default function App() {
         repeat: 1,
       };
 
-      const timeline = gsap.timeline({ delay: 2 });
+      const timeline = gsap.timeline({ delay: 2, repeat: 2, repeatDelay: 10 });
       timeline
         .to('.coupon-card', {
           ...breathe,
@@ -31,10 +31,6 @@ export default function App() {
         })
         .to('.attention-whatsapp', breathe, '+=1.6')
         .to('.attention-site', breathe, '+=0.45');
-
-      gsap.delayedCall(22, () => {
-        gsap.to('.attention-whatsapp', breathe);
-      });
     });
 
     return () => ctx.revert();

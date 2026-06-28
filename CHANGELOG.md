@@ -77,6 +77,9 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Encaixe dos logotipos dos cupons ajustado para preservar proporções das marcas.
 - Ícone e badge de acesso do Mídia Kit ajustados para verde mais legível.
 - Microanimação de respiração adicionada em sequência para cupons, WhatsApp e site principal.
+- SEO técnico revisado com Twitter Card, JSON-LD, headings semânticos, `alt` descritivo e labels acessíveis.
+- Roadmap do projeto criado em `ROADMAP.md`.
+- Respiração dos cards ajustada para 3 ciclos gerais com 10 segundos entre eles.
 
 ### Design Studies
 

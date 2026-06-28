@@ -81,7 +81,10 @@ export default function YouTubeSection() {
   };
 
   return (
-    <section ref={sectionRef} className="w-full pt-5 pb-1">
+    <section ref={sectionRef} className="w-full pt-5 pb-1" aria-labelledby="videos-title">
+      <h2 id="videos-title" className="sr-only">
+        Últimos vídeos da Cecília
+      </h2>
       <div className="flex items-center justify-between px-4 mb-3">
         <span className="section-tag youtube-tag">
           <Youtube size={11} strokeWidth={2} />
@@ -101,6 +104,7 @@ export default function YouTubeSection() {
               cursor: canScrollLeft ? 'pointer' : 'default',
             }}
             disabled={!canScrollLeft}
+            aria-label="Ver vídeos anteriores"
           >
             <ChevronLeft size={14} />
           </button>
@@ -116,6 +120,7 @@ export default function YouTubeSection() {
               cursor: canScrollRight ? 'pointer' : 'default',
             }}
             disabled={!canScrollRight}
+            aria-label="Ver próximos vídeos"
           >
             <ChevronRight size={14} />
           </button>
@@ -155,6 +160,7 @@ export default function YouTubeSection() {
             rel="noopener noreferrer"
             className="flex-shrink-0 group cursor-pointer no-underline"
             style={{ width: '200px' }}
+            aria-label={`Assistir vídeo: ${video.title}`}
           >
             {/* Thumbnail */}
             <div

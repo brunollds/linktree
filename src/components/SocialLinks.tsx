@@ -45,7 +45,10 @@ const socials = [
 
 export default function SocialLinks() {
   return (
-    <section className="social-section w-full px-4 pt-5 pb-1">
+    <section className="social-section w-full px-4 pt-5 pb-1" aria-labelledby="redes-title">
+      <h2 id="redes-title" className="sr-only">
+        Redes sociais oficiais
+      </h2>
       <div className="flex justify-center mb-3">
         <span className="section-tag">
           <Share2 size={11} strokeWidth={2} />
@@ -61,7 +64,7 @@ export default function SocialLinks() {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
-            aria-label={social.label}
+            aria-label={`Abrir ${social.label} do Em Casa com Cecília`}
             title={social.label}
             onClick={() =>
               trackEvent('click_social', {
