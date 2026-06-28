@@ -73,6 +73,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 - Meta tag de verificação do Bing Webmaster Tools adicionada.
 - Cupons Nestlé Nutre e I Wanna Sleep adicionados com logotipos oficiais.
 - Chip `5% OFF` restaurado no card da YesStyle.
+- Badge percentual das ofertas movido para o topo da imagem para compactar os cards.
+- Encaixe dos logotipos dos cupons ajustado para preservar proporções das marcas.
 
 ### Design Studies
 

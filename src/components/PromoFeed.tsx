@@ -177,6 +177,19 @@ export default function PromoFeed() {
                 </div>
               )}
 
+              {promo.discount > 0 && (
+                <span
+                  className="absolute top-2 right-2 z-10 text-[9px] font-bold px-1.5 py-0.5 rounded-full"
+                  style={{
+                    background: 'rgba(255,107,53,0.88)',
+                    color: '#ffffff',
+                    boxShadow: '0 4px 12px rgba(61, 65, 55, 0.16)',
+                  }}
+                >
+                  -{promo.discount}%
+                </span>
+              )}
+
               <div className="flex items-center justify-center p-4" style={{ height: '90px' }}>
                 {promo.image ? (
                   <img
@@ -201,7 +214,7 @@ export default function PromoFeed() {
                 )}
               </div>
 
-              <div className="px-3 pb-3">
+              <div className="px-3 pb-2.5">
                 <span
                   className="block text-[9px] font-semibold uppercase tracking-wider mb-1"
                   style={{ color: 'rgba(255,255,255,0.35)' }}
@@ -230,23 +243,9 @@ export default function PromoFeed() {
                   >
                     {formatPrice(promo.discountPrice)}
                   </span>
-                </div>
-
-                <div className="flex items-center justify-between mt-2">
-                  {promo.discount > 0 && (
-                    <span
-                      className="text-[9px] font-bold px-1.5 py-0.5 rounded"
-                      style={{
-                        background: 'rgba(255,107,53,0.15)',
-                        color: '#ff8a5c',
-                      }}
-                    >
-                      -{promo.discount}%
-                    </span>
-                  )}
                   <ExternalLink
                     size={10}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
                     style={{ color: 'rgba(255,255,255,0.4)' }}
                   />
                 </div>
