@@ -23,6 +23,8 @@ jobs:
     env:
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+      VITE_GA_MEASUREMENT_ID: G-LDLH63KJMP
+      VITE_GA_ENABLED: 'true'
 
     steps:
       - name: Checkout

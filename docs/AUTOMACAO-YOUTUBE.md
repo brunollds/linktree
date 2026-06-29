@@ -13,6 +13,9 @@ Em `Settings → Secrets and variables → Actions`, crie:
 - `HOSTINGER_SSH_PRIVATE_KEY_B64`: chave privada autorizada na Hostinger
   convertida para Base64.
 
+O GA4 é configurado diretamente no workflow com `VITE_GA_MEASUREMENT_ID` e
+`VITE_GA_ENABLED=true`, pois o Measurement ID não é segredo.
+
 Com GitHub CLI instalado e autenticado, os secrets podem ser cadastrados pelo
 terminal:
 
@@ -31,9 +34,6 @@ $bytes = [System.IO.File]::ReadAllBytes("$HOME\.ssh\id_ed25519")
 ```
 
 O resultado deve ser uma única linha, sem espaços ou quebras.
-
-Não use o Measurement ID do Analytics como secret: o GA4 permanece desativado
-até a implementação do consentimento.
 
 ## Teste manual
 

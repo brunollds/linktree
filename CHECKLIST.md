@@ -31,7 +31,7 @@
 - [x] WhatsApp removido das redes sociais e substituído por X/Twitter.
 - [x] Propriedade GA4 existente `emcasacomcecilia` escolhida para integrar o link hub.
 - [x] Measurement ID `G-LDLH63KJMP` configurado localmente.
-- [x] Analytics mantido desativado por `VITE_GA_ENABLED=false`.
+- [x] Analytics ativado por `VITE_GA_ENABLED=true`.
 - [x] Layout responsivo validado no modo mobile do DevTools.
 - [x] Versão aprovada enviada para `github.com/brunollds/linktree`.
 - [x] DNS e SSL de `link.emcasacomcecilia.com` configurados.
@@ -40,11 +40,8 @@
 - [x] Workflow de sincronização e deploy criado para terça, quinta e sábado.
 - [x] Sitemap, robots.txt e llms.txt publicados.
 
-## A Confirmar
-
-- [ ] Implementar consentimento antes de ativar a coleta do GA4.
 ## Pós-Publicação
 
 - [ ] Validar os links e o botão de copiar em pelo menos um celular físico.
-- [ ] Implementar consentimento e ativar o GA4.
 - [ ] Cadastrar `HOSTINGER_SSH_PRIVATE_KEY_B64` e executar o primeiro teste manual.
+- [ ] Avaliar banner de consentimento se a estratégia de privacidade exigir cookies opcionais.
