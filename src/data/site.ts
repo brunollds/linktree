@@ -16,6 +16,7 @@ export interface BrandLinks {
   yesStyle: string;
   nestleNutre: string;
   iWannaSleep: string;
+  magalu: string;
   airFryerEbook: string;
 }
 
@@ -52,6 +53,7 @@ export const brandLinks: BrandLinks = {
     'https://www.yesstyle.com/pt/home.html?rco=CECILIA010&utm_term=CECILIA010&utm_medium=Influencer&utm_source=dynamic&mcg=influencer',
   nestleNutre: 'https://www.nestlenutre.com.br/',
   iWannaSleep: 'https://www.iwannasleep.com.br/',
+  magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
   airFryerEbook:
     'mailto:contato@emcasacomcecilia.com?subject=Quero%20saber%20sobre%20o%20E-book%20Air%20Fryer',
 };

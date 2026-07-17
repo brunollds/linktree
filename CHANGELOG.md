@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Card de Cupons Magalu nos links principais, com painel de cópia para dez códigos, regras de uso e acesso direto à loja Magazine Você da Cecília.
 - Guia de contribuição em `AGENTS.md`.
 - Protótipo alternativo preservado em `backup_alternativo_codex/`.
 - Documentação específica do projeto em `README.md`.
