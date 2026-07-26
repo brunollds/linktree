@@ -49,8 +49,7 @@ export const brandLinks: BrandLinks = {
   damie:
     'https://www.damie.com.br/?utm_source=home&utm_medium=blog&utm_campaign=cecilia12',
   dolceGusto: 'https://www.nescafe-dolcegusto.com.br/',
-  yesStyle:
-    'https://www.yesstyle.com/pt/home.html?rco=CECILIA010&utm_term=CECILIA010&utm_medium=Influencer&utm_source=dynamic&mcg=influencer',
+  yesStyle: 'https://ystyle.co/rQYQv',
   nestleNutre: 'https://www.nestlenutre.com.br/',
   iWannaSleep: 'https://www.iwannasleep.com.br/',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',

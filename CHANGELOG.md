@@ -18,6 +18,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Link da YesStyle atualizado para a URL afiliada de maior comissão.
 - Projeto original do Kimi movido do subdiretório para a raiz.
 - Pacote renomeado para `em-casa-com-cecilia-linkhub`.
 - Dependências vulneráveis atualizadas com `npm audit fix`.
