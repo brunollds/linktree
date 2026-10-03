@@ -4,6 +4,12 @@ O workflow `.github/workflows/sync-youtube-deploy.yml` executa às 06:15
 (horário de Brasília) nas terças, quintas e sábados. Ele sincroniza os seis
 vídeos mais recentes, gera o build e publica em `link.emcasacomcecilia.com`.
 
+O GitHub desativa agendamentos de repositórios públicos após 60 dias sem
+commits. O primeiro passo do workflow reativa o próprio agendamento pela API,
+o que reinicia essa contagem a cada execução. Se o status aparecer como
+`disabled_inactivity`, reative em `Actions → Sync YouTube and deploy → Enable
+workflow` ou com `gh workflow enable sync-youtube-deploy.yml`.
+
 ## Configuração única no GitHub
 
 Em `Settings → Secrets and variables → Actions`, crie:

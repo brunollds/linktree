@@ -15,6 +15,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   deploy:
@@ -27,6 +28,13 @@ jobs:
       VITE_GA_ENABLED: 'true'
 
     steps:
+      # GitHub disables scheduled workflows after 60 days without commits.
+      # Re-enabling through the API resets that counter on every run.
+      - name: Keep schedule alive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/sync-youtube-deploy.yml/enable"
+
       - name: Checkout
         uses: actions/checkout@v5
 
