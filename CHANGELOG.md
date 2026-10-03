@@ -8,6 +8,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom Let's Eat It (MAUAD, 5% OFF) na seção de cupons.
+- Passo no workflow do YouTube que impede a desativação do agendamento por inatividade.
 - Card de Cupons Magalu nos links principais, com painel de cópia para dez códigos, regras de uso e acesso direto à loja Magazine Você da Cecília.
 - Guia de contribuição em `AGENTS.md`.
 - Protótipo alternativo preservado em `backup_alternativo_codex/`.
@@ -18,6 +20,10 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Mini mídia kit atualizado com os dados de agosto de 2026.
+- Card de receitas aponta direto para `emcasacomcecilia.com/receitas`, com ícone de talheres.
+- Card da Damie nos links leva ao hub de reviews e guias `damie.emcasacomcecilia.com`.
+- Card Magalu renomeado para "Meus Cupons EXCLUSIVOS na MAGALU", com o logo da Magalu.
 - Link da YesStyle atualizado para a URL afiliada de maior comissão.
 - Projeto original do Kimi movido do subdiretório para a raiz.
 - Pacote renomeado para `em-casa-com-cecilia-linkhub`.

@@ -28,6 +28,17 @@ const partners: Partner[] = [
     logoAlt: 'Logo da Damie para cupom CECILIA12',
   },
   {
+    name: "Let's Eat It",
+    description: 'Cozinha, mesa posta e decoração',
+    couponCode: 'MAUAD',
+    benefit: '5% OFF',
+    interactionTitle: 'Use MAUAD',
+    interactionDescription: '5% OFF em todo o site',
+    href: brandLinks.letsEatIt,
+    logo: '/images/logo-letseatit.png',
+    logoAlt: "Logo da Let's Eat It para cupom MAUAD",
+  },
+  {
     name: 'Dolce Gusto',
     description: 'Cafeteiras e cápsulas',
     couponCode: 'CECI',

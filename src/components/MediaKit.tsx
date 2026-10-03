@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { FileText, ExternalLink, TrendingUp, Users, Eye, Mail, Radio } from 'lucide-react';
+import { FileText, ExternalLink, Users, Eye, Mail, Radio, Venus } from 'lucide-react';
 import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
 
@@ -44,10 +44,10 @@ export default function MediaKit() {
   }, []);
 
   const stats = [
-    { icon: <Users size={13} />, value: '+550 mil', label: 'Seguidores totais' },
-    { icon: <Eye size={13} />, value: '+10,7 mi', label: 'Visualizações · 3 meses' },
-    { icon: <Radio size={13} />, value: '+6,6 mi', label: 'Contas e impressões' },
-    { icon: <TrendingUp size={13} />, value: '7,4%', label: 'Engajamento Instagram' },
+    { icon: <Users size={13} />, value: '+557 mil', label: 'Seguidores totais' },
+    { icon: <Eye size={13} />, value: '10,3 mi', label: 'Visualizações em 90 dias' },
+    { icon: <Radio size={13} />, value: '2,5 mi', label: 'Contas alcançadas no Instagram' },
+    { icon: <Venus size={13} />, value: '85%', label: 'Audiência feminina' },
   ];
 
   return (
@@ -84,7 +84,7 @@ export default function MediaKit() {
               className="text-[15px] font-semibold"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Mídia Kit 2026
+              Mídia Kit
             </span>
             <span
               className="text-[11px] mt-px"
@@ -93,7 +93,7 @@ export default function MediaKit() {
                 color: 'rgba(255, 255, 255, 0.4)',
               }}
             >
-              Dados, alcance e parcerias
+              Dados de agosto de 2026
             </span>
           </div>
 
