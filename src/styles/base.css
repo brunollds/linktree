@@ -1,0 +1,43 @@
+:root {
+  --laranja: #ff6b35;
+  --marinho: #13234a;
+  --marinho-suave: #4a5675;
+  --papel: #ffffff;
+  --nevoa: #e9edf5;
+  --gema: #ffd23f;
+  --folha: #1a4d2e;
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--papel);
+  color: var(--marinho);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.site {
+  min-height: 100vh;
+  background: var(--papel);
+}
+
+.page-column {
+  width: min(100%, 520px);
+  margin-inline: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

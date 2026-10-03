@@ -1,0 +1,145 @@
+.page-section {
+  padding-top: 22px;
+}
+
+.section-meta {
+  color: var(--marinho-suave);
+  font-size: 13px;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.social-link {
+  display: grid;
+  height: 48px;
+  place-items: center;
+  border: 1px solid var(--nevoa);
+  border-radius: 12px;
+  color: var(--marinho);
+  font-size: 21px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-link:hover {
+  border-color: var(--marinho);
+  color: var(--papel);
+  background: var(--marinho);
+}
+
+.kit {
+  padding: 16px;
+  border-radius: 14px;
+  color: var(--papel);
+  background: var(--marinho);
+}
+
+.kit-lede {
+  margin: 0 0 14px;
+  font-size: 19px;
+  font-stretch: 85%;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.kit-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 12px;
+  margin: 0 0 16px;
+}
+
+.kit-stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+}
+
+.kit-stats dt {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.kit-stats dd {
+  margin: 0;
+  color: var(--gema);
+  font-size: 30px;
+  font-stretch: 75%;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.kit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kit-primary,
+.kit-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 46px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.kit-primary {
+  color: var(--marinho);
+  background: var(--laranja);
+}
+
+.kit-primary:hover {
+  background: #ff8457;
+}
+
+.kit-secondary {
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: var(--papel);
+  overflow-wrap: anywhere;
+}
+
+.kit-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.kit :focus-visible {
+  outline-color: var(--gema);
+}
+
+.site-footer {
+  padding: 24px 0 8px;
+  color: var(--marinho-suave);
+  font-size: 13px;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--marinho);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer-heart {
+  color: var(--laranja);
+}

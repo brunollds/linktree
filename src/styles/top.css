@@ -1,0 +1,333 @@
+.cecilia-top {
+  color: var(--marinho);
+  background: var(--laranja);
+  font-family: var(--font-display);
+}
+
+.cecilia-top .page-column {
+  padding: 14px 14px 20px;
+}
+
+.cecilia-top :focus-visible {
+  outline: 3px solid var(--marinho);
+  outline-offset: 3px;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 40px;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--papel);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-text {
+  min-width: 0;
+}
+
+.profile-handle {
+  color: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(19, 35, 74, 0.35);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.profile-handle:hover {
+  text-decoration-color: currentColor;
+}
+
+.profile-name {
+  margin: 1px 0 2px;
+  font-size: 28px;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.profile-slogan {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.share-btn {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 2px solid var(--marinho);
+  border-radius: 50%;
+  color: var(--marinho);
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.share-btn:hover {
+  color: var(--laranja);
+  background: var(--marinho);
+}
+
+.cecilia-top .coupons {
+  margin-top: 16px;
+  color: var(--marinho);
+}
+
+.coupons-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.coupons-heading h2 {
+  margin: 0;
+  font-size: 22px;
+  font-stretch: 85%;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hand-note {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transform: rotate(-3deg);
+  animation: write-on 0.9s 0.8s ease-in-out both;
+}
+
+.hand-note::after {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  vertical-align: -7px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313234A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5c9-1 15 4 14 14'/%3E%3Cpath d='M12 15l5 5 4-5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+@keyframes write-on {
+  from {
+    clip-path: inset(-30% 100% -30% 0);
+  }
+  to {
+    clip-path: inset(-30% 0 -30% 0);
+  }
+}
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticket {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(108px, 34vw, 128px);
+  min-height: 58px;
+  color: var(--marinho);
+  background: var(--papel);
+  border-radius: 12px;
+  box-shadow: 0 2px 0 rgba(19, 35, 74, 0.22);
+}
+
+.ticket-store {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px 0 0 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ticket-logo {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--nevoa);
+  border-radius: 9px;
+  background: var(--papel);
+}
+
+.ticket-logo img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+}
+
+.ticket-logo--magalu {
+  border-color: #0087ff;
+  background: #0087ff;
+}
+
+.ticket-logo--magalu img {
+  height: auto;
+}
+
+.ticket-info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ticket-name,
+.ticket-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ticket-name svg {
+  display: inline;
+  margin-left: 2px;
+  vertical-align: -2px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ticket-store:hover .ticket-name svg {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.ticket-description {
+  color: var(--marinho-suave);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.ticket-stub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px;
+  border: 0;
+  border-radius: 0 12px 12px 0;
+  color: var(--papel);
+  background: var(--marinho);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--laranja);
+  pointer-events: none;
+}
+
+.ticket-stub::before {
+  top: -7px;
+}
+
+.ticket-stub::after {
+  bottom: -7px;
+}
+
+.ticket-stub:hover {
+  background: #0b1633;
+}
+
+.ticket-stub.is-copied > :not(.ticket-stamp) {
+  visibility: hidden;
+}
+
+.ticket-benefit {
+  color: var(--gema);
+  font-size: 13px;
+  font-stretch: 85%;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.ticket-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: clamp(17px, 5.4vw, 20px);
+  font-stretch: 75%;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ticket-code svg {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.ticket-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 3px 8px;
+  border: 2px solid var(--gema);
+  border-radius: 7px;
+  color: var(--gema);
+  font-size: 17px;
+  font-stretch: 75%;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  animation: stamp-in 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-16deg) scale(1.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-note,
+  .ticket-stamp {
+    animation: none;
+  }
+}
