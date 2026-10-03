@@ -20,6 +20,12 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Tickets compactos em uma linha, com canhoto marinho; cupons, WhatsApp e links cabem na primeira tela de um celular de 375×812.
+- Ordem da página: cupons, WhatsApp e links, ofertas do dia e vídeos.
+- WhatsApp e links viram linhas compactas; fundo da página passa a ser branco com tinta marinho.
+- Card de oferta mostra só imagem e preços; título fica no nome acessível do link.
+- YesStyle abre um painel explicando o Reward Code CECILIA010 antes de seguir para a loja; Magalu passa a se chamar "MAGALU".
+- Carrosséis de ofertas e vídeos compartilham `useCarousel` e `CarouselArrows`; painéis de cupom compartilham `CouponSheet`.
 - Topo redesenhado em faixa laranja com Bricolage Grotesque: perfil, título "Meus cupons" e nota manuscrita em Caveat.
 - Cupons viram tickets com picote, código em destaque como botão de copiar, adesivo de desconto e carimbo "Copiado".
 - Cupons Magalu saem dos links e entram na zona de cupons; o painel usa `<dialog>` nativo com foco preso e fechamento por Esc.

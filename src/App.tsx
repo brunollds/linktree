@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import Header from './components/Header';
-import BentoGrid from './components/BentoGrid';
+import MainLinks from './components/MainLinks';
 import PromoFeed from './components/PromoFeed';
 import CouponSection from './components/CouponSection';
 import YouTubeSection from './components/YouTubeSection';
@@ -45,9 +45,9 @@ export default function App() {
             <CouponSection />
           </div>
         </div>
-        <div className="page-column flex flex-col items-center px-3">
+        <div className="page-column page-body">
+          <MainLinks />
           <PromoFeed />
-          <BentoGrid />
           <YouTubeSection />
           <SocialLinks />
           <MediaKit />

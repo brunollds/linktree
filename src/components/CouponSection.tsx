@@ -1,8 +1,12 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowUpRight, Check, ChevronRight, Copy, X } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronRight, Copy } from 'lucide-react';
 import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
+import { copyText, useCopiedFlag } from '../lib/clipboard';
+import CouponSheet from './CouponSheet';
+
+type SheetName = 'magalu' | 'yesstyle';
 
 interface Partner {
   name: string;
@@ -11,6 +15,8 @@ interface Partner {
   benefit: string;
   href: string;
   logo: string;
+  // Opens an explanation sheet instead of going straight to the store.
+  sheet?: SheetName;
 }
 
 interface MagaluCoupon {
@@ -18,6 +24,8 @@ interface MagaluCoupon {
   discount: string;
   minimumPurchase: string;
 }
+
+const YESSTYLE_CODE = 'CECILIA010';
 
 const partners: Partner[] = [
   {
@@ -46,11 +54,12 @@ const partners: Partner[] = [
   },
   {
     name: 'YesStyle',
-    description: 'Cupom cumulativo',
-    couponCode: 'CECILIA010',
-    benefit: '5% OFF',
+    description: 'Acumula com cupom',
+    couponCode: YESSTYLE_CODE,
+    benefit: 'até 5% OFF',
     href: brandLinks.yesStyle,
     logo: '/images/logo-yesstyle.jpg',
+    sheet: 'yesstyle',
   },
   {
     name: 'Nestlé Nutre',
@@ -86,31 +95,6 @@ const magaluCoupons: MagaluCoupon[] = [
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-async function copyText(text: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-  }
-}
-
-function useCopiedFlag() {
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!copied) return;
-    const timeout = window.setTimeout(() => setCopied(false), 2200);
-    return () => window.clearTimeout(timeout);
-  }, [copied]);
-
-  return [copied, setCopied] as const;
-}
-
 function tugStub(stub: HTMLElement | null) {
   if (!stub || prefersReducedMotion()) return;
   stub.animate(
@@ -123,7 +107,13 @@ function tugStub(stub: HTMLElement | null) {
   );
 }
 
-function CouponTicket({ partner }: { partner: Partner }) {
+function CouponTicket({
+  partner,
+  onOpenSheet,
+}: {
+  partner: Partner;
+  onOpenSheet: (sheet: SheetName) => void;
+}) {
   const stubRef = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useCopiedFlag();
 
@@ -134,6 +124,15 @@ function CouponTicket({ partner }: { partner: Partner }) {
     trackEvent('copy_coupon', { coupon_code: partner.couponCode, partner: partner.name });
   };
 
+  const handleStoreClick = (event: React.MouseEvent) => {
+    if (partner.sheet) {
+      event.preventDefault();
+      onOpenSheet(partner.sheet);
+      return;
+    }
+    trackEvent('click_coupon_store', { partner: partner.name, link_url: partner.href });
+  };
+
   return (
     <article className="ticket coupon-card">
       <a
@@ -141,9 +140,7 @@ function CouponTicket({ partner }: { partner: Partner }) {
         target="_blank"
         rel="noopener noreferrer"
         className="ticket-store"
-        onClick={() =>
-          trackEvent('click_coupon_store', { partner: partner.name, link_url: partner.href })
-        }
+        onClick={handleStoreClick}
       >
         <span className="ticket-logo">
           <img src={partner.logo} alt="" />
@@ -196,10 +193,11 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
           <img src="/images/logo-magalu.webp" alt="" />
         </span>
         <span className="ticket-info">
-          <span className="ticket-name ticket-name--wrap">
-            Meus Cupons EXCLUSIVOS na MAGALU
+          <span className="ticket-name">
+            MAGALU
             <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
           </span>
+          <span className="ticket-description">Meus cupons exclusivos</span>
         </span>
       </a>
 
@@ -219,103 +217,99 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function MagaluCouponRow({ coupon }: { coupon: MagaluCoupon }) {
+function CopyButton({ code, onCopied }: { code: string; onCopied?: () => void }) {
   const [copied, setCopied] = useCopiedFlag();
 
   const handleCopy = async () => {
-    await copyText(coupon.code);
+    await copyText(code);
     setCopied(true);
-    trackEvent('copy_magalu_coupon', { coupon_code: coupon.code });
+    onCopied?.();
   };
 
   return (
-    <li className="magalu-row">
-      <span className="magalu-row-discount">{coupon.discount}</span>
-      <span className="magalu-row-minimum">
-        Compras acima de {coupon.minimumPurchase.replace(' ', '\u00a0')}
-      </span>
-      <span className="magalu-row-code">{coupon.code}</span>
-      <button
-        type="button"
-        className="magalu-row-copy"
-        onClick={handleCopy}
-        aria-label={`Copiar cupom ${coupon.code}`}
-      >
-        {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
-        {copied ? 'Copiado' : 'Copiar'}
-      </button>
-    </li>
+    <button type="button" className="sheet-copy" onClick={handleCopy} aria-label={`Copiar ${code}`}>
+      {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
+      {copied ? 'Copiado' : 'Copiar'}
+    </button>
   );
 }
 
-function MagaluCouponDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (isOpen && !dialog.open) dialog.showModal();
-    if (!isOpen && dialog.open) dialog.close();
-    if (!isOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
-
+function MagaluSheet({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
-    <dialog
-      ref={dialogRef}
-      className="magalu-dialog"
-      aria-labelledby="magalu-coupons-title"
+    <CouponSheet
+      isOpen={isOpen}
       onClose={onClose}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
+      title="Meus cupons na Magalu"
+      storeHref={brandLinks.magalu}
+      storeLabel="Abrir minha loja na Magalu"
+      onStoreClick={() => trackEvent('click_magalu_store', { link_url: brandLinks.magalu })}
     >
-      <div className="magalu-sheet">
-        <header className="magalu-sheet-header">
-          <h2 id="magalu-coupons-title">Meus cupons na Magalu</h2>
-          <button type="button" className="magalu-close" aria-label="Fechar" onClick={onClose}>
-            <X size={20} aria-hidden="true" />
-          </button>
-        </header>
+      <p className="sheet-note">
+        Estes cupons funcionam só na minha loja Magazine Você. No app ou no site comum da Magalu
+        eles não são aceitos.
+      </p>
+      <ul className="sheet-list">
+        {magaluCoupons.map((coupon) => (
+          <li key={coupon.code} className="sheet-row">
+            <span className="sheet-row-title">{coupon.discount}</span>
+            <span className="sheet-row-detail">
+              Compras acima de {coupon.minimumPurchase.replace(' ', ' ')}
+            </span>
+            <span className="sheet-row-code">{coupon.code}</span>
+            <CopyButton
+              code={coupon.code}
+              onCopied={() => trackEvent('copy_magalu_coupon', { coupon_code: coupon.code })}
+            />
+          </li>
+        ))}
+      </ul>
+    </CouponSheet>
+  );
+}
 
-        <div className="magalu-sheet-body">
-          <p className="magalu-rule">
-            Estes cupons funcionam só na minha loja Magazine Você. No app ou no site comum da
-            Magalu eles não são aceitos.
-          </p>
-          <ul className="magalu-list">
-            {magaluCoupons.map((coupon) => (
-              <MagaluCouponRow key={coupon.code} coupon={coupon} />
-            ))}
-          </ul>
-        </div>
-
-        <footer className="magalu-sheet-footer">
-          <a
-            href={brandLinks.magalu}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="magalu-store-link"
-            onClick={() => trackEvent('click_magalu_store', { link_url: brandLinks.magalu })}
-          >
-            Abrir minha loja na Magalu
-            <ArrowUpRight size={17} strokeWidth={2.2} aria-hidden="true" />
-          </a>
-        </footer>
+function YesStyleSheet({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <CouponSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title="CECILIA010 é um Reward Code"
+      storeHref={brandLinks.yesStyle}
+      storeLabel="Ir para a YesStyle"
+      onStoreClick={() =>
+        trackEvent('click_coupon_store', { partner: 'YesStyle', link_url: brandLinks.yesStyle })
+      }
+    >
+      <p className="sheet-note">
+        Ele não vai no campo de cupom. Por isso dá para somar com os cupons promocionais da loja.
+      </p>
+      <div className="sheet-row">
+        <span className="sheet-row-title">{YESSTYLE_CODE}</span>
+        <span className="sheet-row-detail">Até 5% extra: 5% na 1ª compra, 2% nas seguintes</span>
+        <CopyButton
+          code={YESSTYLE_CODE}
+          onCopied={() =>
+            trackEvent('copy_coupon', { coupon_code: YESSTYLE_CODE, partner: 'YesStyle' })
+          }
+        />
       </div>
-    </dialog>
+      <ol className="sheet-steps">
+        <li>Copie o código {YESSTYLE_CODE}.</li>
+        <li>
+          No carrinho da YesStyle, cole no campo <strong>Reward Code</strong>.
+        </li>
+        <li>
+          Se tiver um cupom da loja, use no campo <strong>Coupon Code</strong>. Os dois descontos
+          somam.
+        </li>
+      </ol>
+    </CouponSheet>
   );
 }
 
 export default function CouponSection() {
   const listRef = useRef<HTMLDivElement>(null);
-  const [isMagaluOpen, setIsMagaluOpen] = useState(false);
+  const [openSheet, setOpenSheet] = useState<SheetName | null>(null);
+  const closeSheet = () => setOpenSheet(null);
 
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return;
@@ -356,12 +350,13 @@ export default function CouponSection() {
 
       <div ref={listRef} className="ticket-list">
         {partners.map((partner) => (
-          <CouponTicket key={partner.name} partner={partner} />
+          <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
-        <MagaluTicket onOpen={() => setIsMagaluOpen(true)} />
+        <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
       </div>
 
-      <MagaluCouponDialog isOpen={isMagaluOpen} onClose={() => setIsMagaluOpen(false)} />
+      <MagaluSheet isOpen={openSheet === 'magalu'} onClose={closeSheet} />
+      <YesStyleSheet isOpen={openSheet === 'yesstyle'} onClose={closeSheet} />
     </section>
   );
 }
