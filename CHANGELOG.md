@@ -20,6 +20,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Redes sociais, mídia kit e rodapé redesenhados; números do mídia kit contam até o valor ao aparecer na tela.
+- Barra do navegador em laranja e descrições de compartilhamento com cupons em primeiro lugar.
 - Tickets compactos em uma linha, com canhoto marinho; cupons, WhatsApp e links cabem na primeira tela de um celular de 375×812.
 - Ordem da página: cupons, WhatsApp e links, ofertas do dia e vídeos.
 - WhatsApp e links viram linhas compactas; fundo da página passa a ser branco com tinta marinho.
@@ -110,6 +112,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Removed
 
+- Overrides `!important` do tema escuro antigo, fontes Inter e Space Grotesk e campos sem uso do tipo `Offer`.
 - Fundo WebGL `src/components/fluid/`, sem uso desde o tema estático.
 - Tokens de cor e animação do Tailwind sem uso, plugin `tailwindcss-animate` e classes CSS mortas.
 - Catálogo shadcn com aproximadamente 50 componentes não utilizados.

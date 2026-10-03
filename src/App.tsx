@@ -37,8 +37,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="paper-theme">
-      <main className="relative z-10 min-h-screen pb-8">
+    <div className="site">
+      <main className="min-h-screen pb-8">
         <div className="cecilia-top">
           <div className="page-column">
             <Header />

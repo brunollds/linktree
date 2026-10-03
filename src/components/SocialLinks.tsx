@@ -1,4 +1,3 @@
-import { Share2 } from 'lucide-react';
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,49 +10,19 @@ import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
 
 const socials = [
-  {
-    href: brandLinks.instagram,
-    icon: <FaInstagram />,
-    label: 'Instagram',
-  },
-  {
-    href: brandLinks.youtube,
-    icon: <FaYoutube />,
-    label: 'YouTube',
-  },
-  {
-    href: brandLinks.x,
-    icon: <FaXTwitter />,
-    label: 'X / Twitter',
-  },
-  {
-    href: brandLinks.tiktok,
-    icon: <FaTiktok />,
-    label: 'TikTok',
-  },
-  {
-    href: brandLinks.facebook,
-    icon: <FaFacebookF />,
-    label: 'Facebook',
-  },
-  {
-    href: brandLinks.kwai,
-    icon: <SiKuaishou />,
-    label: 'Kwai',
-  },
+  { href: brandLinks.instagram, icon: <FaInstagram />, label: 'Instagram' },
+  { href: brandLinks.youtube, icon: <FaYoutube />, label: 'YouTube' },
+  { href: brandLinks.tiktok, icon: <FaTiktok />, label: 'TikTok' },
+  { href: brandLinks.facebook, icon: <FaFacebookF />, label: 'Facebook' },
+  { href: brandLinks.kwai, icon: <SiKuaishou />, label: 'Kwai' },
+  { href: brandLinks.x, icon: <FaXTwitter />, label: 'X' },
 ];
 
 export default function SocialLinks() {
   return (
-    <section className="social-section w-full px-4 pt-5 pb-1" aria-labelledby="redes-title">
-      <h2 id="redes-title" className="sr-only">
-        Redes sociais oficiais
-      </h2>
-      <div className="flex justify-center mb-3">
-        <span className="section-tag">
-          <Share2 size={11} strokeWidth={2} />
-          Redes sociais
-        </span>
+    <section className="page-section" aria-labelledby="redes-title">
+      <div className="section-head">
+        <h2 id="redes-title">Me acompanhe</h2>
       </div>
 
       <nav className="social-links" aria-label="Redes sociais">
@@ -64,7 +33,7 @@ export default function SocialLinks() {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
-            aria-label={`Abrir ${social.label} do Em Casa com Cecília`}
+            aria-label={`${social.label} do Em Casa com Cecília`}
             title={social.label}
             onClick={() =>
               trackEvent('click_social', {

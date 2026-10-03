@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caveat:wght@600&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caveat:wght@600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,6 @@
 
 @layer base {
   :root {
-    --radius: 1rem;
     --laranja: #ff6b35;
     --marinho: #13234a;
     --marinho-suave: #4a5675;
@@ -34,7 +33,7 @@
 }
 
 @layer components {
-  .paper-theme {
+  .site {
     min-height: 100vh;
     background: var(--papel);
   }
@@ -889,131 +888,155 @@
     font-size: 12px;
   }
 
+  /* Redes, mídia kit e rodapé */
+  .page-section {
+    padding-top: 22px;
+  }
+
+  .section-meta {
+    color: var(--marinho-suave);
+    font-size: 13px;
+  }
+
   .social-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    min-height: 38px;
-    padding: 6px 0;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #315744;
-    font-size: 23px;
-    line-height: 1;
-    transition: transform 0.2s ease, color 0.2s ease;
+    display: grid;
+    height: 48px;
+    place-items: center;
+    border: 1px solid var(--nevoa);
+    border-radius: 12px;
+    color: var(--marinho);
+    font-size: 21px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
   .social-link:hover {
-    color: #b85f43;
-    transform: translateY(-2px) scale(1.08);
+    border-color: var(--marinho);
+    color: var(--papel);
+    background: var(--marinho);
   }
 
-  .brand-contact {
+  .kit {
+    padding: 16px;
+    border-radius: 14px;
+    color: var(--papel);
+    background: var(--marinho);
+  }
+
+  .kit-lede {
+    margin: 0 0 14px;
+    font-size: 19px;
+    font-stretch: 85%;
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .kit-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+    margin: 0 0 16px;
+  }
+
+  .kit-stats > div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  .kit-stats dt {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .kit-stats dd {
+    margin: 0;
+    color: var(--gema);
+    font-size: 30px;
+    font-stretch: 75%;
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .kit-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .kit-primary,
+  .kit-secondary {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-    margin-top: 10px;
-    padding: 10px 14px;
-    border: 1px solid rgba(36, 74, 56, 0.1);
-    border-radius: 12px;
-    color: #6e786f;
-    background: rgba(255, 253, 248, 0.52);
-    font-size: 10px;
-    line-height: 1.25;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .brand-contact span {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .brand-contact strong {
-    color: #244a38;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-  }
-
-  .brand-contact:hover {
-    border-color: rgba(36, 74, 56, 0.22);
-    background: rgba(255, 253, 248, 0.9);
-  }
-
-  /* Media Kit CTA card */
-  .mediakit-card {
-    background: rgba(190, 104, 76, 0.08);
-    border: 1px solid rgba(190, 104, 76, 0.2);
-    border-radius: 14px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .mediakit-card:hover {
-    background: rgba(190, 104, 76, 0.13);
-    border-color: rgba(190, 104, 76, 0.35);
-    box-shadow: 0 10px 28px rgba(61, 65, 55, 0.1);
-    transform: translateY(-2px);
-  }
-
-  /* Section label/tag */
-  .section-tag {
-    display: inline-flex;
-    align-items: center;
     gap: 6px;
-    padding: 3px 10px;
+    min-height: 46px;
+    padding: 10px 14px;
     border-radius: 999px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: rgba(255, 253, 248, 0.65);
-    border: 1px solid rgba(36, 74, 56, 0.1);
-    color: #8a6b5f;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  .paper-theme .text-white {
-    color: var(--marinho) !important;
-  }
-
-  .paper-theme section,
-  .paper-theme footer {
+  .kit-primary {
     color: var(--marinho);
+    background: var(--laranja);
   }
 
-  .paper-theme [style*='color: rgba(255, 255, 255'],
-  .paper-theme [style*='color: rgba(255,255,255'] {
-    color: #6e786f !important;
+  .kit-primary:hover {
+    background: #ff8457;
   }
 
-  .paper-theme [style*='color: rgb(255, 255, 255)'],
-  .paper-theme [style*='color: #FFFFFF'],
-  .paper-theme [style*='color: #ffffff'] {
-    color: #173126 !important;
+  .kit-secondary {
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    color: var(--papel);
+    overflow-wrap: anywhere;
   }
 
-  .paper-theme [style*='background: rgba(255, 255, 255'],
-  .paper-theme [style*='background: rgba(255,255,255'] {
-    background: rgba(255, 253, 248, 0.72) !important;
+  .kit-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  .paper-theme [style*='border: 1px solid rgba(255, 255, 255'],
-  .paper-theme [style*='border: 1px solid rgba(255,255,255'] {
-    border-color: rgba(36, 74, 56, 0.11) !important;
+  .kit :focus-visible {
+    outline-color: var(--gema);
   }
 
-  .paper-theme .stat-item {
-    background: rgba(255, 253, 248, 0.55) !important;
+  .site-footer {
+    padding: 24px 0 8px;
+    color: var(--marinho-suave);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+
+  .site-footer a {
+    color: var(--marinho);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .site-footer-heart {
+    color: var(--laranja);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .paper-theme * {
+    .site * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       scroll-behavior: auto !important;

@@ -49,7 +49,6 @@ function normalizeDicasPost(post: DicasPost, index: number): Offer | null {
   return {
     id: post.slug || `dicas-${index}`,
     title,
-    description: post.categoria || 'Oferta selecionada pela Cecília',
     originalPrice,
     discountPrice,
     discount,

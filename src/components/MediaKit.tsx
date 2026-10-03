@@ -1,167 +1,123 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { FileText, ExternalLink, Users, Eye, Mail, Radio, Venus } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
 
-export default function MediaKit() {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+interface Stat {
+  label: string;
+  value: number;
+  decimals: number;
+  prefix?: string;
+  suffix: string;
+}
 
+const stats: Stat[] = [
+  { label: 'Seguidores totais', value: 557, decimals: 0, prefix: '+', suffix: ' mil' },
+  { label: 'Visualizações em 90 dias', value: 10.3, decimals: 1, suffix: ' mi' },
+  { label: 'Contas alcançadas no Instagram', value: 2.5, decimals: 1, suffix: ' mi' },
+  { label: 'Audiência feminina', value: 85, decimals: 0, suffix: '%' },
+];
+
+function formatStat(stat: Stat, value = stat.value) {
+  const number = value.toLocaleString('pt-BR', {
+    minimumFractionDigits: stat.decimals,
+    maximumFractionDigits: stat.decimals,
+  });
+  return `${stat.prefix ?? ''}${number}${stat.suffix}`;
+}
+
+function useCountUp(listRef: React.RefObject<HTMLDListElement | null>) {
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.mediakit-tag',
-        { y: 6 },
-        { y: 0, duration: 0.35, ease: 'power3.out', delay: 0.55 }
-      );
+    const list = listRef.current;
+    if (!list || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      gsap.fromTo(
-        cardRef.current,
-        { y: 10, scale: 0.99 },
-        {
-          y: 0,
-          scale: 1,
-          duration: 0.4,
-          ease: 'power3.out',
-          delay: 0.6,
-        }
-      );
+    const outputs = [...list.querySelectorAll<HTMLElement>('[data-stat]')];
+    let tween: gsap.core.Tween | undefined;
 
-      gsap.fromTo(
-        '.stat-item',
-        { y: 6 },
-        {
-          y: 0,
-          duration: 0.3,
-          ease: 'power3.out',
-          stagger: 0.07,
-          delay: 0.65,
-        }
-      );
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
 
-    return () => ctx.revert();
-  }, []);
+        const progress = { value: 0 };
+        tween = gsap.to(progress, {
+          value: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          onUpdate: () => {
+            outputs.forEach((output) => {
+              const stat = stats[Number(output.dataset.stat)];
+              output.textContent = formatStat(stat, stat.value * progress.value);
+            });
+          },
+        });
+      },
+      { threshold: 0.6 },
+    );
 
-  const stats = [
-    { icon: <Users size={13} />, value: '+557 mil', label: 'Seguidores totais' },
-    { icon: <Eye size={13} />, value: '10,3 mi', label: 'Visualizações em 90 dias' },
-    { icon: <Radio size={13} />, value: '2,5 mi', label: 'Contas alcançadas no Instagram' },
-    { icon: <Venus size={13} />, value: '85%', label: 'Audiência feminina' },
-  ];
+    observer.observe(list);
+    return () => {
+      observer.disconnect();
+      tween?.kill();
+      outputs.forEach((output) => {
+        output.textContent = formatStat(stats[Number(output.dataset.stat)]);
+      });
+    };
+  }, [listRef]);
+}
+
+export default function MediaKit() {
+  const listRef = useRef<HTMLDListElement>(null);
+  useCountUp(listRef);
 
   return (
-    <section className="w-full px-4 pt-4 pb-1" aria-labelledby="midia-kit-title">
-      <h2 id="midia-kit-title" className="sr-only">
-        Mídia Kit e contato comercial
-      </h2>
-      <div className="flex justify-center mb-3">
-        <span className="section-tag mediakit-tag">
-          <FileText size={11} strokeWidth={2} />
-          Marcas
-        </span>
+    <section className="page-section" aria-labelledby="marcas-title">
+      <div className="section-head">
+        <h2 id="marcas-title">Para marcas</h2>
+        <span className="section-meta">Dados de agosto de 2026</span>
       </div>
 
-      <a
-        ref={cardRef}
-        href={brandLinks.mediaKit}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mediakit-card block px-4 py-4 w-full text-white no-underline cursor-pointer"
-        aria-label="Acessar mídia kit do Em Casa com Cecília"
-      >
-        {/* Top row */}
-        <div className="flex items-center gap-3 mb-3.5">
-          <span
-            className="flex items-center justify-center w-10 h-10 rounded-xl"
-            style={{ background: 'rgba(36, 74, 56, 0.11)' }}
-          >
-            <FileText size={22} strokeWidth={1.6} style={{ color: '#244a38' }} />
-          </span>
+      <div className="kit">
+        <p className="kit-lede">Para marcas que querem entrar na casa de verdade.</p>
 
-          <div className="flex flex-col flex-1">
-            <span
-              className="text-[15px] font-semibold"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              Mídia Kit
-            </span>
-            <span
-              className="text-[11px] mt-px"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                color: 'rgba(255, 255, 255, 0.4)',
-              }}
-            >
-              Dados de agosto de 2026
-            </span>
-          </div>
-
-          <span
-            className="flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1.5 rounded-lg"
-            style={{
-              background: 'rgba(36, 74, 56, 0.11)',
-              color: '#244a38',
-            }}
-          >
-            <ExternalLink size={13} />
-            Acessar
-          </span>
-        </div>
-
-        {/* Stats row */}
-        <div
-          className="grid grid-cols-2 gap-2 pt-3"
-          style={{ borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}
-        >
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="stat-item flex flex-col items-center gap-1 py-2 rounded-lg"
-              style={{
-                background: 'rgba(255, 255, 255, 0.025)',
-              }}
-            >
-              <span style={{ color: 'rgba(255, 215, 0, 0.6)' }}>{stat.icon}</span>
-              <span
-                className="text-[12px] font-bold text-center"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  color: '#FFFFFF',
-                }}
-              >
-                {stat.value}
-              </span>
-              <span
-                className="text-[8px] text-center leading-tight"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                {stat.label}
-              </span>
+        <dl ref={listRef} className="kit-stats">
+          {stats.map((stat, index) => (
+            <div key={stat.label}>
+              <dt>{stat.label}</dt>
+              <dd>
+                <span aria-hidden="true" data-stat={index}>
+                  {formatStat(stat)}
+                </span>
+                <span className="sr-only">{formatStat(stat)}</span>
+              </dd>
             </div>
           ))}
-        </div>
-      </a>
+        </dl>
 
-      <a
-        href={brandLinks.contactMailto}
-        className="brand-contact"
-        aria-label={`Enviar e-mail para ${brandLinks.contactEmail}`}
-        onClick={() =>
-          trackEvent('click_contact_email', {
-            link_url: brandLinks.contactMailto,
-          })
-        }
-      >
-        <Mail size={14} strokeWidth={1.7} />
-        <span>
-          Contato comercial
-          <strong>{brandLinks.contactEmail}</strong>
-        </span>
-      </a>
+        <div className="kit-actions">
+          <a
+            href={brandLinks.mediaKit}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="kit-primary"
+            onClick={() => trackEvent('click_media_kit', { link_url: brandLinks.mediaKit })}
+          >
+            Ver mídia kit completo
+            <ArrowUpRight size={17} strokeWidth={2.2} aria-hidden="true" />
+          </a>
+          <a
+            href={brandLinks.contactMailto}
+            className="kit-secondary"
+            onClick={() =>
+              trackEvent('click_contact_email', { link_url: brandLinks.contactMailto })
+            }
+          >
+            <Mail size={17} strokeWidth={2} aria-hidden="true" />
+            {brandLinks.contactEmail}
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

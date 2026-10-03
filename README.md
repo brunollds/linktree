@@ -1,6 +1,6 @@
 # Em Casa Com Cecília Link Hub
 
-Página de links, cupons, ofertas e conteúdo da Cecília. O frontend usa React, TypeScript, Vite, Tailwind CSS e GSAP, com um tema estático leve em papel premium.
+Página de links, cupons, ofertas e conteúdo da Cecília. O frontend usa React, TypeScript, Vite, Tailwind CSS e GSAP, com visual em laranja e marinho derivado da marca: Bricolage Grotesque, Caveat e cupons em formato de ticket.
 
 As ofertas são carregadas em tempo real de `https://dicas.emcasacomcecilia.com/ultimos-posts-dicas.json`. Os vídeos do YouTube são sincronizados durante `npm run dev` e `npm run build`, gerando `public/data/youtube.json` sem incluir as credenciais no frontend.
 

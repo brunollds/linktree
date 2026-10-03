@@ -26,12 +26,10 @@ export interface BrandLinks {
 export interface Offer {
   id: string;
   title: string;
-  description: string;
   originalPrice: number;
   discountPrice: number;
   discount: number;
   store: string;
-  coupon?: string;
   url: string;
   image?: string;
 }
