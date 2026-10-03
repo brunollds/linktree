@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caveat:wght@600&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +7,15 @@
 @layer base {
   :root {
     --radius: 1rem;
+    --laranja: #ff6b35;
+    --marinho: #13234a;
+    --marinho-suave: #4a5675;
+    --papel: #ffffff;
+    --nevoa: #e9edf5;
+    --gema: #ffd23f;
+    --folha: #1a4d2e;
+    --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+    --font-hand: 'Caveat', 'Segoe Print', cursive;
   }
 
   body {
@@ -33,67 +42,530 @@
       #f3ede2;
   }
 
-  .paper-theme > main {
+  /* Topo laranja: perfil e cupons */
+  .page-column {
     width: min(100%, 520px);
-    margin: 0 auto;
+    margin-inline: auto;
+  }
+
+  .cecilia-top {
+    color: var(--marinho);
+    background: var(--laranja);
+    font-family: var(--font-display);
+  }
+
+  .cecilia-top .page-column {
+    padding: 22px 16px 32px;
+  }
+
+  .cecilia-top :focus-visible {
+    outline: 3px solid var(--marinho);
+    outline-offset: 3px;
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 44px;
+    align-items: center;
+    column-gap: 14px;
   }
 
   .profile-avatar {
-    border: 2px solid rgba(255, 253, 248, 0.9);
-    box-shadow: 0 7px 20px rgba(61, 65, 55, 0.14);
+    width: 72px;
+    height: 72px;
+    border: 3px solid var(--papel);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile-text {
+    min-width: 0;
   }
 
   .profile-handle {
-    display: inline-block;
-    color: #b85f43;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: color 0.2s ease;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(19, 35, 74, 0.35);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s ease;
   }
 
   .profile-handle:hover {
-    color: #8f432f;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
   }
 
   .profile-name {
-    position: relative;
-    display: table;
-    margin: 2px 0 3px;
-    color: #204d39;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 22px;
+    margin: 3px 0 5px;
+    font-size: 34px;
+    font-stretch: 75%;
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.04em;
-    text-shadow: 0 1px 0 rgba(255, 253, 248, 0.8);
-  }
-
-  .profile-name::after {
-    content: '';
-    position: absolute;
-    right: 1px;
-    bottom: -2px;
-    left: 18%;
-    height: 3px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(184, 95, 67, 0), #b85f43 35%, #d49a66);
-    transform: rotate(-1.5deg);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
   }
 
   .profile-slogan {
-    max-width: 270px;
     margin: 0;
-    color: #6e786f;
-    font-size: 10px;
+    font-size: 15px;
+    font-weight: 500;
     line-height: 1.35;
+    text-wrap: pretty;
   }
 
-  .main-link-title,
-  .coupon-title {
+  .share-btn {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 2px solid var(--marinho);
+    border-radius: 50%;
+    color: var(--marinho);
+    background: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .share-btn:hover {
+    color: var(--laranja);
+    background: var(--marinho);
+  }
+
+  .cecilia-top .coupons {
+    margin-top: 30px;
+    color: var(--marinho);
+  }
+
+  .coupons-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .coupons-heading h2 {
+    margin: 0;
+    font-size: 26px;
+    font-stretch: 85%;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hand-note {
+    margin: 0;
+    font-family: var(--font-hand);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transform: rotate(-3deg);
+    animation: write-on 0.9s 0.8s ease-in-out both;
+  }
+
+  .hand-note::after {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-left: 3px;
+    vertical-align: -7px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313234A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5c9-1 15 4 14 14'/%3E%3Cpath d='M12 15l5 5 4-5'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+
+  @keyframes write-on {
+    from {
+      clip-path: inset(-30% 100% -30% 0);
+    }
+    to {
+      clip-path: inset(-30% 0 -30% 0);
+    }
+  }
+
+  .ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ticket {
+    position: relative;
+    color: var(--marinho);
+    background: var(--papel);
+    border-radius: 14px;
+    box-shadow: 0 3px 0 rgba(19, 35, 74, 0.22);
+  }
+
+  .ticket-store {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
+    padding: 14px 14px 12px;
+    border-radius: 14px 14px 0 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ticket-logo {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--nevoa);
+    border-radius: 10px;
+    background: var(--papel);
+  }
+
+  .ticket-logo img {
+    width: 84%;
+    height: 84%;
+    object-fit: contain;
+  }
+
+  .ticket-logo--magalu {
+    border-color: #0087ff;
+    background: #0087ff;
+  }
+
+  .ticket-logo--magalu img {
+    height: auto;
+  }
+
+  .ticket-info {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ticket-name {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ticket-store:has(.ticket-benefit) .ticket-name {
+    padding-right: 72px;
+  }
+
+  .ticket-name svg {
+    display: inline;
+    margin-left: 3px;
+    vertical-align: -2px;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .ticket-store:hover .ticket-name svg {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  .ticket-description {
+    color: var(--marinho-suave);
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .ticket-benefit {
+    position: absolute;
+    top: -9px;
+    right: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--gema);
+    box-shadow: 0 2px 0 rgba(19, 35, 74, 0.2);
+    font-size: 16px;
+    font-stretch: 85%;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+    transform: rotate(4deg);
+  }
+
+  .ticket-stub {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 14px 14px;
+    border: 0;
+    border-radius: 0 0 14px 14px;
+    color: inherit;
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(19, 35, 74, 0.32) 55%, transparent 0);
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-size: 9px 2px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  .ticket-stub::before,
+  .ticket-stub::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--laranja);
+    pointer-events: none;
+  }
+
+  .ticket-stub::before {
+    left: -8px;
+  }
+
+  .ticket-stub::after {
+    right: -8px;
+  }
+
+  .ticket-stub:hover {
+    background-color: #f4f6fb;
+  }
+
+  .ticket-code {
+    font-size: 30px;
+    font-stretch: 75%;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .ticket-code--range {
+    font-size: clamp(20px, 6.6vw, 26px);
+  }
+
+  .ticket-action {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    color: var(--papel);
+    background: var(--marinho);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .ticket-action.is-hidden {
+    visibility: hidden;
+  }
+
+  .ticket-stamp {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    padding: 4px 10px;
+    border: 2.5px solid var(--folha);
+    border-radius: 8px;
+    color: var(--folha);
+    font-size: 18px;
+    font-stretch: 75%;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transform: translateY(-50%) rotate(-8deg);
+    animation: stamp-in 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  }
+
+  @keyframes stamp-in {
+    from {
+      opacity: 0;
+      transform: translateY(-50%) rotate(-16deg) scale(1.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) rotate(-8deg) scale(1);
+    }
+  }
+
+  .magalu-dialog {
+    width: min(100% - 24px, 520px);
+    max-width: none;
+    max-height: min(88vh, 720px);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 18px;
+    color: var(--marinho);
+    background: var(--papel);
+    font-family: var(--font-display);
+  }
+
+  .magalu-dialog::backdrop {
+    background: rgba(19, 35, 74, 0.55);
+  }
+
+  .magalu-sheet {
+    display: flex;
+    max-height: min(88vh, 720px);
+    flex-direction: column;
+  }
+
+  .magalu-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--nevoa);
+  }
+
+  .magalu-sheet-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-stretch: 85%;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .magalu-close {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 50%;
+    color: inherit;
+    transition: background-color 0.2s ease;
+  }
+
+  .magalu-close:hover {
+    background: var(--nevoa);
+  }
+
+  .magalu-sheet-body {
+    overflow-y: auto;
+    padding: 16px 20px 4px;
+  }
+
+  .magalu-rule {
+    margin: 0 0 6px;
+    padding: 10px 12px;
+    border-left: 4px solid #0087ff;
+    border-radius: 8px;
+    background: #e8f3ff;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .magalu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .magalu-row {
+    display: grid;
+    grid-template-areas:
+      'discount copy'
+      'minimum copy'
+      'code copy';
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nevoa);
+  }
+
+  .magalu-row:last-child {
+    border-bottom: 0;
+  }
+
+  .magalu-row-discount {
+    grid-area: discount;
+    font-size: 24px;
+    font-stretch: 75%;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .magalu-row-minimum {
+    grid-area: minimum;
+    color: var(--marinho-suave);
+    font-size: 14px;
+  }
+
+  .magalu-row-code {
+    grid-area: code;
+    color: var(--marinho-suave);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
+  }
+
+  .magalu-row-copy {
+    display: inline-flex;
+    grid-area: copy;
+    align-items: center;
+    align-self: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    color: var(--papel);
+    background: var(--marinho);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .magalu-sheet-footer {
+    padding: 14px 20px 18px;
+    border-top: 1px solid var(--nevoa);
+  }
+
+  .magalu-store-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: 999px;
+    color: var(--papel);
+    background: #0062c8;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .magalu-store-link:hover {
+    background: #004fa3;
+  }
+
+  .magalu-dialog :focus-visible {
+    outline: 3px solid var(--marinho);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 639px) {
+    .magalu-dialog {
+      margin-bottom: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hand-note,
+    .ticket-stamp {
+      animation: none;
+    }
+  }
+
+  .main-link-title {
     animation: text-reveal 0.24s ease both;
   }
 
@@ -192,180 +664,6 @@
     transform: translateY(-2px);
   }
 
-  /* Coupon / ticket card */
-  .coupon-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    min-height: 66px;
-    background: rgba(255, 253, 248, 0.74);
-    border: 1px solid rgba(36, 74, 56, 0.11);
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .coupon-card:hover,
-  .coupon-card:focus-within {
-    background: rgba(255, 253, 248, 0.96);
-    border-color: rgba(255, 107, 53, 0.35);
-    box-shadow: 0 10px 28px rgba(61, 65, 55, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .coupon-card.is-active img {
-    transform: scale(1.06);
-  }
-
-  .coupon-card img {
-    transition: transform 0.25s ease;
-  }
-
-  .coupon-main {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    gap: 11px;
-    padding: 11px 12px 11px 15px;
-    overflow: hidden;
-    color: #173126;
-    text-decoration: none;
-  }
-
-  .coupon-logo {
-    display: grid;
-    width: 38px;
-    height: 38px;
-    flex-shrink: 0;
-    place-items: center;
-    overflow: hidden;
-    border: 1px solid rgba(36, 74, 56, 0.1);
-    border-radius: 10px;
-    background: #fff;
-  }
-
-  .coupon-logo img {
-    width: 84%;
-    height: 84%;
-    object-fit: contain;
-  }
-
-  .coupon-content {
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .coupon-title {
-    display: block;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .coupon-description {
-    display: block;
-    margin-top: 2px;
-    overflow: hidden;
-    color: #748078;
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    line-height: 1.3;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .coupon-benefit-chip {
-    flex-shrink: 0;
-    padding: 2px 7px;
-    border: 1px solid rgba(36, 74, 56, 0.16);
-    border-radius: 999px;
-    color: #244a38;
-    background: #e1ece4;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-  }
-
-  .coupon-stub {
-    position: relative;
-    display: flex;
-    width: 108px;
-    min-height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    padding: 8px 10px 8px 14px;
-    border: 0;
-    border-left: 1px dashed rgba(184, 95, 67, 0.38);
-    color: #8f432f;
-    background: #f7e7df;
-    cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif;
-    transition: color 0.2s ease, background 0.2s ease;
-  }
-
-  .coupon-stub::before,
-  .coupon-stub::after {
-    content: '';
-    position: absolute;
-    left: -7px;
-    width: 13px;
-    height: 13px;
-    background: #f3ede2;
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 1px rgba(36, 74, 56, 0.05);
-  }
-
-  .coupon-stub::before {
-    top: -7px;
-  }
-
-  .coupon-stub::after {
-    bottom: -7px;
-  }
-
-  .coupon-stub small {
-    color: #a06d5d;
-    font-family: 'Inter', sans-serif;
-    font-size: 8px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .coupon-stub span {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0;
-    white-space: nowrap;
-  }
-
-  .coupon-stub:hover,
-  .coupon-stub:focus-visible {
-    color: #fff;
-    background: #b85f43;
-    outline: none;
-  }
-
-  .coupon-stub:hover small,
-  .coupon-stub:focus-visible small {
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  @media (max-width: 390px) {
-    .coupon-stub {
-      width: 96px;
-      padding-right: 7px;
-      padding-left: 11px;
-    }
-
-    .coupon-stub span {
-      font-size: 10px;
-    }
-  }
-
   /* Media Kit CTA card */
   .mediakit-card {
     background: rgba(190, 104, 76, 0.08);
@@ -412,27 +710,6 @@
     color: #8a6b5f;
   }
 
-  /* Share button */
-  .share-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 253, 248, 0.7);
-    border: 1px solid rgba(36, 74, 56, 0.11);
-    color: #52645a;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .share-btn:hover {
-    background: rgba(36, 74, 56, 0.1);
-    border-color: rgba(26, 77, 46, 0.4);
-    color: #244a38;
-  }
-
   .paper-theme .text-white {
     color: #173126 !important;
   }
@@ -467,10 +744,6 @@
     background: rgba(255, 253, 248, 0.74) !important;
     border-color: rgba(36, 74, 56, 0.11) !important;
     box-shadow: 0 9px 25px rgba(61, 65, 55, 0.07);
-  }
-
-  .paper-theme .coupon-card > div[style*='#0f1419'] {
-    background: #f3ede2 !important;
   }
 
   .paper-theme .stat-item {

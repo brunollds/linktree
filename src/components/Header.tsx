@@ -1,88 +1,46 @@
-import { useEffect, useRef, useCallback } from 'react';
-import gsap from 'gsap';
-import { Share2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Check, Share2 } from 'lucide-react';
 import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
 
 export default function Header() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const avatarRef = useRef<HTMLImageElement>(null);
-  const profileRef = useRef<HTMLDivElement>(null);
-  const shareRef = useRef<HTMLButtonElement>(null);
-
-  const handleShare = useCallback(async () => {
-    const shareData = {
-      title: 'Cecília Mauad',
-      text: 'Confira os cupons e dicas da Cecília!',
-      url: window.location.href,
-    };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(window.location.href);
-        // Could add a toast here
-      }
-    } catch {
-      // User cancelled share
-    }
-  }, []);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.15 });
+    if (!linkCopied) return;
+    const timeout = window.setTimeout(() => setLinkCopied(false), 2200);
+    return () => window.clearTimeout(timeout);
+  }, [linkCopied]);
 
-      tl.fromTo(
-        avatarRef.current,
-        { y: 8 },
-        { y: 0, duration: 0.45, ease: 'power3.out' }
-        )
-        .fromTo(
-          profileRef.current,
-          { x: -8 },
-          { x: 0, duration: 0.4, ease: 'power3.out' },
-          '-=0.35'
-        )
-        .fromTo(
-          shareRef.current,
-          { y: -6 },
-          { y: 0, duration: 0.35, ease: 'power3.out' },
-          '-=0.3'
-        );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  const handleShare = async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Cecília Mauad',
+          text: 'Confira os cupons e dicas da Cecília!',
+          url,
+        });
+      } else {
+        await navigator.clipboard.writeText(url);
+        setLinkCopied(true);
+      }
+    } catch {
+      // Share sheet dismissed or clipboard unavailable.
+    }
+  };
 
   return (
-    <header
-      ref={containerRef}
-      className="relative grid w-full grid-cols-[68px_1fr_40px] items-center gap-x-3 px-4 pb-2 pt-5"
-    >
-      <button
-        ref={shareRef}
-        onClick={handleShare}
-        className="share-btn col-start-3 row-start-1"
-        aria-label="Compartilhar"
-      >
-        <Share2 size={18} strokeWidth={1.5} />
-      </button>
+    <header className="profile">
+      <img
+        src="/images/avatar-small.jpg"
+        width={72}
+        height={72}
+        alt="Cecília Mauad do Em Casa com Cecília"
+        className="profile-avatar"
+      />
 
-      <div className="relative col-start-1 row-start-1">
-        <img
-          ref={avatarRef}
-          src="/images/avatar-small.jpg"
-          width={68}
-          height={68}
-          alt="Cecília Mauad do Em Casa com Cecília"
-          className="profile-avatar relative h-[68px] w-[68px] rounded-full object-cover"
-        />
-      </div>
-
-      <div
-        ref={profileRef}
-        className="col-start-2 row-start-1 min-w-0 text-left"
-      >
+      <div className="profile-text">
         <a
           href={brandLinks.instagram}
           target="_blank"
@@ -103,6 +61,22 @@ export default function Header() {
         </h1>
         <p className="profile-slogan">Receitas fáceis que dão certo.</p>
       </div>
+
+      <button
+        type="button"
+        onClick={handleShare}
+        className="share-btn"
+        aria-label={linkCopied ? 'Link copiado' : 'Compartilhar esta página'}
+      >
+        {linkCopied ? (
+          <Check size={19} strokeWidth={2} aria-hidden="true" />
+        ) : (
+          <Share2 size={19} strokeWidth={1.8} aria-hidden="true" />
+        )}
+      </button>
+      <span className="sr-only" aria-live="polite">
+        {linkCopied ? 'Link da página copiado' : ''}
+      </span>
     </header>
   );
 }

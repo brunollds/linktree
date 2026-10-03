@@ -20,6 +20,11 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Topo redesenhado em faixa laranja com Bricolage Grotesque: perfil, título "Meus cupons" e nota manuscrita em Caveat.
+- Cupons viram tickets com picote, código em destaque como botão de copiar, adesivo de desconto e carimbo "Copiado".
+- Cupons Magalu saem dos links e entram na zona de cupons; o painel usa `<dialog>` nativo com foco preso e fechamento por Esc.
+- Animação de entrada dos tickets "saindo da impressora", mantendo a respiração periódica; tudo desligado com movimento reduzido.
+- Cliques na loja e cópias de cupom dos parceiros passam a ser registrados no Analytics.
 - Avatar do cabeçalho e favicon reduzidos de 525 KB para 10 KB; imagem de compartilhamento com 1200 px e 166 KB.
 - Mini mídia kit atualizado com os dados de agosto de 2026.
 - Card de receitas aponta direto para `emcasacomcecilia.com/receitas`, com ícone de talheres.

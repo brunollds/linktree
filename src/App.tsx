@@ -38,15 +38,21 @@ export default function App() {
 
   return (
     <div className="paper-theme">
-      <main className="relative z-10 min-h-screen flex flex-col items-center px-3 pb-8">
-        <Header />
-        <CouponSection />
-        <PromoFeed />
-        <BentoGrid />
-        <YouTubeSection />
-        <SocialLinks />
-        <MediaKit />
-        <Footer />
+      <main className="relative z-10 min-h-screen pb-8">
+        <div className="cecilia-top">
+          <div className="page-column">
+            <Header />
+            <CouponSection />
+          </div>
+        </div>
+        <div className="page-column flex flex-col items-center px-3">
+          <PromoFeed />
+          <BentoGrid />
+          <YouTubeSection />
+          <SocialLinks />
+          <MediaKit />
+          <Footer />
+        </div>
       </main>
     </div>
   );

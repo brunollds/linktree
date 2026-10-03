@@ -1,18 +1,22 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Copy, Check, Percent } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronRight, Copy, X } from 'lucide-react';
 import { brandLinks } from '../data/site';
+import { trackEvent } from '../lib/analytics';
 
 interface Partner {
   name: string;
   description: string;
   couponCode: string;
-  benefit?: string;
-  interactionTitle: string;
-  interactionDescription: string;
+  benefit: string;
   href: string;
   logo: string;
-  logoAlt: string;
+}
+
+interface MagaluCoupon {
+  code: string;
+  discount: string;
+  minimumPurchase: string;
 }
 
 const partners: Partner[] = [
@@ -21,202 +25,346 @@ const partners: Partner[] = [
     description: 'Móveis premium: sofás, poltronas e camas',
     couponCode: 'CECILIA12',
     benefit: '12% OFF',
-    interactionTitle: 'Use CECILIA12',
-    interactionDescription: '12% OFF na sua compra',
     href: brandLinks.damie,
     logo: '/images/logo-damie.jpg',
-    logoAlt: 'Logo da Damie para cupom CECILIA12',
   },
   {
     name: "Let's Eat It",
     description: 'Cozinha, mesa posta e decoração',
     couponCode: 'MAUAD',
     benefit: '5% OFF',
-    interactionTitle: 'Use MAUAD',
-    interactionDescription: '5% OFF em todo o site',
     href: brandLinks.letsEatIt,
     logo: '/images/logo-letseatit.png',
-    logoAlt: "Logo da Let's Eat It para cupom MAUAD",
   },
   {
     name: 'Dolce Gusto',
     description: 'Cafeteiras e cápsulas',
     couponCode: 'CECI',
     benefit: '5% OFF',
-    interactionTitle: 'Use CECI',
-    interactionDescription: '5% OFF na sua compra',
     href: brandLinks.dolceGusto,
     logo: '/images/logo-dolcegusto.avif',
-    logoAlt: 'Logo da Dolce Gusto para cupom CECI',
   },
   {
     name: 'YesStyle',
-    description: 'Combine: Cupom + CECILIA010',
+    description: 'Combine com qualquer outro cupom da loja',
     couponCode: 'CECILIA010',
     benefit: '5% OFF',
-    interactionTitle: 'Use CECILIA010 + outro cupom',
-    interactionDescription: 'Combine com qualquer cupom disponível',
     href: brandLinks.yesStyle,
     logo: '/images/logo-yesstyle.jpg',
-    logoAlt: 'Logo da YesStyle para código CECILIA010',
   },
   {
     name: 'Nestlé Nutre',
     description: 'Nutrição, vitaminas e bem-estar',
     couponCode: 'CECI',
     benefit: '5% OFF',
-    interactionTitle: 'Use CECI',
-    interactionDescription: '5% OFF na sua compra',
     href: brandLinks.nestleNutre,
     logo: '/images/logo-nestle-nutre.png',
-    logoAlt: 'Logo da Nestlé Nutre para cupom CECI',
   },
   {
     name: 'I Wanna Sleep',
     description: 'Sono, conforto e bem-estar',
     couponCode: 'CECIEMCASA',
     benefit: '10% OFF',
-    interactionTitle: 'Use CECIEMCASA',
-    interactionDescription: '10% OFF na sua compra',
     href: brandLinks.iWannaSleep,
     logo: '/images/logo-i-wanna-sleep.avif',
-    logoAlt: 'Logo da I Wanna Sleep para cupom CECIEMCASA',
   },
 ];
 
-function CouponCard({ partner, index }: { partner: Partner; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [copied, setCopied] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+const magaluCoupons: MagaluCoupon[] = [
+  { code: '10EMCASACOMCECILIA', discount: 'R$ 10 OFF', minimumPurchase: 'R$ 499,90' },
+  { code: '20EMCASACOMCECILIA', discount: 'R$ 20 OFF', minimumPurchase: 'R$ 999,90' },
+  { code: '30EMCASACOMCECILIA', discount: 'R$ 30 OFF', minimumPurchase: 'R$ 1.499,90' },
+  { code: '40EMCASACOMCECILIA', discount: 'R$ 40 OFF', minimumPurchase: 'R$ 1.999,90' },
+  { code: '50EMCASACOMCECILIA', discount: 'R$ 50 OFF', minimumPurchase: 'R$ 2.499,90' },
+  { code: '60EMCASACOMCECILIA', discount: 'R$ 60 OFF', minimumPurchase: 'R$ 2.999,90' },
+  { code: '70EMCASACOMCECILIA', discount: 'R$ 70 OFF', minimumPurchase: 'R$ 3.499,90' },
+  { code: '80EMCASACOMCECILIA', discount: 'R$ 80 OFF', minimumPurchase: 'R$ 3.999,90' },
+  { code: '90EMCASACOMCECILIA', discount: 'R$ 90 OFF', minimumPurchase: 'R$ 4.499,90' },
+  { code: '100EMCASACOMCECILIA', discount: 'R$ 100 OFF', minimumPurchase: 'R$ 4.999,90' },
+];
 
-  const handleCopy = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      navigator.clipboard.writeText(partner.couponCode).catch(() => {
-        const textarea = document.createElement('textarea');
-        textarea.value = partner.couponCode;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-      });
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    },
-    [partner.couponCode]
-  );
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  }
+}
+
+function useCopiedFlag() {
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!cardRef.current) return;
-    gsap.fromTo(
-      cardRef.current,
-      { y: 10 },
-      {
-        y: 0,
-        duration: 0.4,
-        ease: 'power3.out',
-        delay: 0.4 + index * 0.05,
-      }
-    );
-  }, [index]);
+    if (!copied) return;
+    const timeout = window.setTimeout(() => setCopied(false), 2200);
+    return () => window.clearTimeout(timeout);
+  }, [copied]);
+
+  return [copied, setCopied] as const;
+}
+
+function tugStub(stub: HTMLElement | null) {
+  if (!stub || prefersReducedMotion()) return;
+  stub.animate(
+    [
+      { transform: 'translateY(0) rotate(0)' },
+      { transform: 'translateY(4px) rotate(0.8deg)' },
+      { transform: 'translateY(0) rotate(0)' },
+    ],
+    { duration: 280, easing: 'cubic-bezier(0.3, 0.7, 0.4, 1.4)' },
+  );
+}
+
+function CouponTicket({ partner }: { partner: Partner }) {
+  const stubRef = useRef<HTMLButtonElement>(null);
+  const [copied, setCopied] = useCopiedFlag();
+
+  const handleCopy = async () => {
+    await copyText(partner.couponCode);
+    setCopied(true);
+    tugStub(stubRef.current);
+    trackEvent('copy_coupon', { coupon_code: partner.couponCode, partner: partner.name });
+  };
 
   return (
-    <div
-      ref={cardRef}
-      className={`coupon-card ${isActive ? 'is-active' : ''}`}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-      onTouchStart={() => setIsActive(true)}
-      onTouchEnd={() => setIsActive(false)}
-    >
+    <article className="ticket coupon-card">
       <a
         href={partner.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="coupon-main"
-        aria-label={`Abrir ${partner.name} usando o código ${partner.couponCode}`}
-        onFocus={() => setIsActive(true)}
-        onBlur={() => setIsActive(false)}
+        className="ticket-store"
+        onClick={() =>
+          trackEvent('click_coupon_store', { partner: partner.name, link_url: partner.href })
+        }
       >
-        <span className="coupon-logo">
-          <img src={partner.logo} alt={partner.logoAlt} loading="lazy" />
+        <span className="ticket-logo">
+          <img src={partner.logo} alt="" />
         </span>
-
-        <div className="coupon-content">
-          <div className="flex items-center gap-2">
-            <span
-              key={isActive ? 'interaction' : 'name'}
-              className="coupon-title text-[13px] font-semibold"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              {isActive ? partner.interactionTitle : partner.name}
-            </span>
-            {partner.benefit && (
-              <span className="coupon-benefit-chip">{partner.benefit}</span>
-            )}
-          </div>
-          <span className="coupon-description">
-            {isActive ? partner.interactionDescription : partner.description}
+        <span className="ticket-info">
+          <span className="ticket-name">
+            {partner.name}
+            <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
           </span>
-        </div>
+          <span className="ticket-description">{partner.description}</span>
+        </span>
+        <span className="ticket-benefit">{partner.benefit}</span>
       </a>
 
       <button
+        ref={stubRef}
+        type="button"
+        className="ticket-stub"
         onClick={handleCopy}
-        className="coupon-stub"
-        title={`Copiar ${partner.couponCode}`}
-        aria-label={`Copiar código ${partner.couponCode}`}
+        aria-label={`Copiar cupom ${partner.couponCode} da ${partner.name}`}
       >
-        {copied ? (
-          <>
-            <Check size={14} />
-            <span>Copiado</span>
-          </>
-        ) : (
-          <>
-            <small>Copiar</small>
-            <span>{partner.couponCode}</span>
-            <Copy size={12} />
-          </>
+        <span className="ticket-code">{partner.couponCode}</span>
+        <span className={`ticket-action ${copied ? 'is-hidden' : ''}`}>
+          <Copy size={16} strokeWidth={2} aria-hidden="true" />
+          Copiar
+        </span>
+        {copied && (
+          <span className="ticket-stamp" aria-hidden="true">
+            Copiado
+          </span>
         )}
       </button>
-    </div>
+      <span className="sr-only" aria-live="polite">
+        {copied ? `Cupom ${partner.couponCode} copiado` : ''}
+      </span>
+    </article>
+  );
+}
+
+function MagaluTicket({ onOpen }: { onOpen: () => void }) {
+  return (
+    <article className="ticket coupon-card">
+      <a
+        href={brandLinks.magalu}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ticket-store"
+        onClick={() => trackEvent('click_magalu_store', { link_url: brandLinks.magalu })}
+      >
+        <span className="ticket-logo ticket-logo--magalu">
+          <img src="/images/logo-magalu.webp" alt="" />
+        </span>
+        <span className="ticket-info">
+          <span className="ticket-name">
+            Meus Cupons EXCLUSIVOS na MAGALU
+            <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
+          </span>
+          <span className="ticket-description">10 cupons válidos só na minha loja Magazine Você</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        className="ticket-stub"
+        onClick={onOpen}
+        aria-label="Ver os 10 cupons da Magalu"
+      >
+        <span className="ticket-code ticket-code--range">R$ 10 a R$ 100</span>
+        <span className="ticket-action">
+          Ver cupons
+          <ChevronRight size={16} strokeWidth={2.2} aria-hidden="true" />
+        </span>
+      </button>
+    </article>
+  );
+}
+
+function MagaluCouponRow({ coupon }: { coupon: MagaluCoupon }) {
+  const [copied, setCopied] = useCopiedFlag();
+
+  const handleCopy = async () => {
+    await copyText(coupon.code);
+    setCopied(true);
+    trackEvent('copy_magalu_coupon', { coupon_code: coupon.code });
+  };
+
+  return (
+    <li className="magalu-row">
+      <span className="magalu-row-discount">{coupon.discount}</span>
+      <span className="magalu-row-minimum">
+        Compras acima de {coupon.minimumPurchase.replace(' ', '\u00a0')}
+      </span>
+      <span className="magalu-row-code">{coupon.code}</span>
+      <button
+        type="button"
+        className="magalu-row-copy"
+        onClick={handleCopy}
+        aria-label={`Copiar cupom ${coupon.code}`}
+      >
+        {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
+        {copied ? 'Copiado' : 'Copiar'}
+      </button>
+    </li>
+  );
+}
+
+function MagaluCouponDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (isOpen && !dialog.open) dialog.showModal();
+    if (!isOpen && dialog.open) dialog.close();
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="magalu-dialog"
+      aria-labelledby="magalu-coupons-title"
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="magalu-sheet">
+        <header className="magalu-sheet-header">
+          <h2 id="magalu-coupons-title">Meus cupons na Magalu</h2>
+          <button type="button" className="magalu-close" aria-label="Fechar" onClick={onClose}>
+            <X size={20} aria-hidden="true" />
+          </button>
+        </header>
+
+        <div className="magalu-sheet-body">
+          <p className="magalu-rule">
+            Estes cupons funcionam só na minha loja Magazine Você. No app ou no site comum da
+            Magalu eles não são aceitos.
+          </p>
+          <ul className="magalu-list">
+            {magaluCoupons.map((coupon) => (
+              <MagaluCouponRow key={coupon.code} coupon={coupon} />
+            ))}
+          </ul>
+        </div>
+
+        <footer className="magalu-sheet-footer">
+          <a
+            href={brandLinks.magalu}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="magalu-store-link"
+            onClick={() => trackEvent('click_magalu_store', { link_url: brandLinks.magalu })}
+          >
+            Abrir minha loja na Magalu
+            <ArrowUpRight size={17} strokeWidth={2.2} aria-hidden="true" />
+          </a>
+        </footer>
+      </div>
+    </dialog>
   );
 }
 
 export default function CouponSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const [isMagaluOpen, setIsMagaluOpen] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.coupon-section-tag',
-        { y: 6 },
-        { y: 0, duration: 0.35, ease: 'power3.out', delay: 0.35 }
-      );
-    }, sectionRef);
+      gsap
+        .timeline({ delay: 0.2 })
+        .from('.ticket', {
+          clipPath: 'inset(0% 0% 100% 0%)',
+          y: -14,
+          duration: 0.55,
+          ease: 'power2.out',
+          stagger: 0.09,
+          clearProps: 'clipPath',
+        })
+        .from(
+          '.ticket-benefit',
+          {
+            scale: 1.7,
+            rotate: -12,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'back.out(2)',
+            stagger: 0.09,
+          },
+          0.55,
+        );
+    }, listRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full px-4 pt-4 pb-1" aria-labelledby="cupons-title">
-      <h2 id="cupons-title" className="sr-only">
-        Cupons da Cecília
-      </h2>
-      <div className="flex justify-center mb-3">
-        <span className="section-tag coupon-section-tag">
-          <Percent size={11} strokeWidth={2} />
-          Cupons
-        </span>
+    <section className="coupons" aria-labelledby="cupons-title">
+      <div className="coupons-heading">
+        <h2 id="cupons-title">Meus cupons</h2>
+        <p className="hand-note">toque pra copiar</p>
       </div>
 
-      <div className="flex flex-col gap-2.5">
-        {partners.map((partner, i) => (
-          <CouponCard key={partner.name} partner={partner} index={i} />
+      <div ref={listRef} className="ticket-list">
+        {partners.map((partner) => (
+          <CouponTicket key={partner.name} partner={partner} />
         ))}
+        <MagaluTicket onOpen={() => setIsMagaluOpen(true)} />
       </div>
+
+      <MagaluCouponDialog isOpen={isMagaluOpen} onClose={() => setIsMagaluOpen(false)} />
     </section>
   );
 }
