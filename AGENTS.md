@@ -7,7 +7,6 @@ The runnable application lives at the repository root. Run project commands from
 - `src/main.tsx` bootstraps the React application.
 - `src/App.tsx` defines the page composition.
 - `src/components/` contains the page sections and interactive feature components.
-- `src/components/fluid/` contains the WebGL background and shader code.
 - `public/images/` stores static images referenced with root-relative URLs such as `/images/avatar.jpg`.
 - `backup_alternativo_codex/app/` preserves the independent Codex prototype for visual and architectural comparison; do not mix its dependencies or source files into the main app unintentionally.
 - Root-level Markdown files contain project notes and review material.

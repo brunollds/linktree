@@ -32,7 +32,6 @@ O build estático é gerado em `dist/` e usa caminhos relativos para permitir pu
 
 - `src/App.tsx`: composição da página.
 - `src/components/`: seções de links, cupons, ofertas, vídeos e mídia kit.
-- `src/components/fluid/`: implementação WebGL preservada, mas não utilizada pelo tema atual.
 - `src/data/site.ts`: links centrais e tipos compartilhados.
 - `src/services/dicasOffers.ts`: leitura e normalização do feed público do Dicas.
 - `scripts/sync-youtube.mjs`: sincronização segura da YouTube Data API.

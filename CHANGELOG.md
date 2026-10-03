@@ -99,6 +99,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Removed
 
+- Fundo WebGL `src/components/fluid/`, sem uso desde o tema estático.
 - Tokens de cor e animação do Tailwind sem uso, plugin `tailwindcss-animate` e classes CSS mortas.
 - Catálogo shadcn com aproximadamente 50 componentes não utilizados.
 - Arquivos residuais do template Vite: `Home.tsx`, `LinkCard.tsx` e `App.css`.
