@@ -71,7 +71,9 @@ export default function Header() {
       <div className="relative col-start-1 row-start-1">
         <img
           ref={avatarRef}
-          src="/images/avatar.jpg"
+          src="/images/avatar-small.jpg"
+          width={68}
+          height={68}
           alt="Cecília Mauad do Em Casa com Cecília"
           className="profile-avatar relative h-[68px] w-[68px] rounded-full object-cover"
         />

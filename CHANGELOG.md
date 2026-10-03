@@ -20,6 +20,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Avatar do cabeçalho e favicon reduzidos de 525 KB para 10 KB; imagem de compartilhamento com 1200 px e 166 KB.
 - Mini mídia kit atualizado com os dados de agosto de 2026.
 - Card de receitas aponta direto para `emcasacomcecilia.com/receitas`, com ícone de talheres.
 - Card da Damie nos links leva ao hub de reviews e guias `damie.emcasacomcecilia.com`.
@@ -98,6 +99,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Removed
 
+- Tokens de cor e animação do Tailwind sem uso, plugin `tailwindcss-animate` e classes CSS mortas.
 - Catálogo shadcn com aproximadamente 50 componentes não utilizados.
 - Arquivos residuais do template Vite: `Home.tsx`, `LinkCard.tsx` e `App.css`.
 - Hooks, utilitários e configuração shadcn sem referências.
