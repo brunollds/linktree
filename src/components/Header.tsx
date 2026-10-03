@@ -34,8 +34,8 @@ export default function Header() {
     <header className="profile">
       <img
         src="/images/avatar-small.jpg"
-        width={72}
-        height={72}
+        width={56}
+        height={56}
         alt="Cecília Mauad do Em Casa com Cecília"
         className="profile-avatar"
       />

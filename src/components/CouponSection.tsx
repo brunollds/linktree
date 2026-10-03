@@ -22,7 +22,7 @@ interface MagaluCoupon {
 const partners: Partner[] = [
   {
     name: 'Damie',
-    description: 'Móveis premium: sofás, poltronas e camas',
+    description: 'Sofás e poltronas',
     couponCode: 'CECILIA12',
     benefit: '12% OFF',
     href: brandLinks.damie,
@@ -30,7 +30,7 @@ const partners: Partner[] = [
   },
   {
     name: "Let's Eat It",
-    description: 'Cozinha, mesa posta e decoração',
+    description: 'Cozinha e mesa posta',
     couponCode: 'MAUAD',
     benefit: '5% OFF',
     href: brandLinks.letsEatIt,
@@ -46,7 +46,7 @@ const partners: Partner[] = [
   },
   {
     name: 'YesStyle',
-    description: 'Combine com qualquer outro cupom da loja',
+    description: 'Cupom cumulativo',
     couponCode: 'CECILIA010',
     benefit: '5% OFF',
     href: brandLinks.yesStyle,
@@ -54,7 +54,7 @@ const partners: Partner[] = [
   },
   {
     name: 'Nestlé Nutre',
-    description: 'Nutrição, vitaminas e bem-estar',
+    description: 'Nutrição e vitaminas',
     couponCode: 'CECI',
     benefit: '5% OFF',
     href: brandLinks.nestleNutre,
@@ -62,7 +62,7 @@ const partners: Partner[] = [
   },
   {
     name: 'I Wanna Sleep',
-    description: 'Sono, conforto e bem-estar',
+    description: 'Sono e conforto',
     couponCode: 'CECIEMCASA',
     benefit: '10% OFF',
     href: brandLinks.iWannaSleep,
@@ -151,24 +151,23 @@ function CouponTicket({ partner }: { partner: Partner }) {
         <span className="ticket-info">
           <span className="ticket-name">
             {partner.name}
-            <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
+            <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
           </span>
           <span className="ticket-description">{partner.description}</span>
         </span>
-        <span className="ticket-benefit">{partner.benefit}</span>
       </a>
 
       <button
         ref={stubRef}
         type="button"
-        className="ticket-stub"
+        className={`ticket-stub ${copied ? 'is-copied' : ''}`}
         onClick={handleCopy}
-        aria-label={`Copiar cupom ${partner.couponCode} da ${partner.name}`}
+        aria-label={`Copiar cupom ${partner.couponCode} da ${partner.name}, ${partner.benefit}`}
       >
-        <span className="ticket-code">{partner.couponCode}</span>
-        <span className={`ticket-action ${copied ? 'is-hidden' : ''}`}>
-          <Copy size={16} strokeWidth={2} aria-hidden="true" />
-          Copiar
+        <span className="ticket-benefit">{partner.benefit}</span>
+        <span className="ticket-code">
+          {partner.couponCode}
+          <Copy size={13} strokeWidth={2.2} aria-hidden="true" />
         </span>
         {copied && (
           <span className="ticket-stamp" aria-hidden="true">
@@ -197,11 +196,10 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
           <img src="/images/logo-magalu.webp" alt="" />
         </span>
         <span className="ticket-info">
-          <span className="ticket-name">
+          <span className="ticket-name ticket-name--wrap">
             Meus Cupons EXCLUSIVOS na MAGALU
-            <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
+            <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
           </span>
-          <span className="ticket-description">10 cupons válidos só na minha loja Magazine Você</span>
         </span>
       </a>
 
@@ -209,12 +207,12 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
         type="button"
         className="ticket-stub"
         onClick={onOpen}
-        aria-label="Ver os 10 cupons da Magalu"
+        aria-label="Ver os 10 cupons da Magalu, de R$ 10 a R$ 100 de desconto"
       >
-        <span className="ticket-code ticket-code--range">R$ 10 a R$ 100</span>
-        <span className="ticket-action">
-          Ver cupons
-          <ChevronRight size={16} strokeWidth={2.2} aria-hidden="true" />
+        <span className="ticket-benefit">10 cupons</span>
+        <span className="ticket-code">
+          até R$ 100
+          <ChevronRight size={15} strokeWidth={2.4} aria-hidden="true" />
         </span>
       </button>
     </article>
@@ -327,23 +325,22 @@ export default function CouponSection() {
         .timeline({ delay: 0.2 })
         .from('.ticket', {
           clipPath: 'inset(0% 0% 100% 0%)',
-          y: -14,
-          duration: 0.55,
+          y: -10,
+          duration: 0.45,
           ease: 'power2.out',
-          stagger: 0.09,
+          stagger: 0.07,
           clearProps: 'clipPath',
         })
         .from(
-          '.ticket-benefit',
+          '.ticket-stub',
           {
-            scale: 1.7,
-            rotate: -12,
-            opacity: 0,
+            clipPath: 'inset(0% 0% 0% 100%)',
             duration: 0.3,
-            ease: 'back.out(2)',
-            stagger: 0.09,
+            ease: 'power2.out',
+            stagger: 0.07,
+            clearProps: 'clipPath',
           },
-          0.55,
+          0.3,
         );
     }, listRef);
 
