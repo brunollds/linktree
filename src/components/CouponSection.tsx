@@ -65,7 +65,7 @@ const partners: Partner[] = [
     name: 'Nestlé Nutre',
     description: 'Nutrição e vitaminas',
     couponCode: 'CECI',
-    benefit: '5% OFF',
+    benefit: '10% OFF',
     href: brandLinks.nestleNutre,
     logo: '/images/logo-nestle-nutre.png',
   },

@@ -20,6 +20,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Cupom Nestlé Nutre (CECI) atualizado de 5% para 10% OFF.
 - Redes sociais, mídia kit e rodapé redesenhados; números do mídia kit contam até o valor ao aparecer na tela.
 - Barra do navegador em laranja e descrições de compartilhamento com cupons em primeiro lugar.
 - Tickets compactos em uma linha, com canhoto marinho; cupons, WhatsApp e links cabem na primeira tela de um celular de 375×812.
