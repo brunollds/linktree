@@ -15,6 +15,8 @@ interface Partner {
   benefit: string;
   href: string;
   logo: string;
+  // Codes too long for one line in the stub wrap at this index.
+  codeBreakAt?: number;
   // Opens an explanation sheet instead of going straight to the store.
   sheet?: SheetName;
 }
@@ -77,6 +79,16 @@ const partners: Partner[] = [
     href: brandLinks.iWannaSleep,
     logo: '/images/logo-i-wanna-sleep.avif',
   },
+  {
+    // Insider does not allow percentages in partner copy.
+    name: 'Insider',
+    description: 'Camisetas e underwear',
+    couponCode: 'EMCASACOMCECILIA',
+    codeBreakAt: 9,
+    benefit: 'Desconto exclusivo',
+    href: brandLinks.insider,
+    logo: '/images/logo-insider.png',
+  },
 ];
 
 const magaluCoupons: MagaluCoupon[] = [
@@ -116,6 +128,7 @@ function CouponTicket({
 }) {
   const stubRef = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useCopiedFlag();
+  const { codeBreakAt } = partner;
 
   const handleCopy = async () => {
     await copyText(partner.couponCode);
@@ -162,8 +175,16 @@ function CouponTicket({
         aria-label={`Copiar cupom ${partner.couponCode} da ${partner.name}, ${partner.benefit}`}
       >
         <span className="ticket-benefit">{partner.benefit}</span>
-        <span className="ticket-code">
-          {partner.couponCode}
+        <span className={`ticket-code ${codeBreakAt ? 'ticket-code--long' : ''}`}>
+          {codeBreakAt ? (
+            <span>
+              {partner.couponCode.slice(0, codeBreakAt)}
+              <wbr />
+              {partner.couponCode.slice(codeBreakAt)}
+            </span>
+          ) : (
+            partner.couponCode
+          )}
           <Copy size={13} strokeWidth={2.2} aria-hidden="true" />
         </span>
         {copied && (

@@ -291,6 +291,13 @@
   white-space: nowrap;
 }
 
+.ticket-code--long {
+  font-size: 15px;
+  letter-spacing: 0;
+  white-space: normal;
+  text-align: center;
+}
+
 .ticket-code svg {
   flex-shrink: 0;
   opacity: 0.75;

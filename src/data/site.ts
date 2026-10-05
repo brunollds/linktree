@@ -19,6 +19,7 @@ export interface BrandLinks {
   nestleNutre: string;
   iWannaSleep: string;
   letsEatIt: string;
+  insider: string;
   magalu: string;
   airFryerEbook: string;
 }
@@ -57,6 +58,8 @@ export const brandLinks: BrandLinks = {
   iWannaSleep: 'https://www.iwannasleep.com.br/',
   letsEatIt:
     'https://letseatit.com.br/?utm_source=embaixador&utm_medium=emcasacomcecilia&utm_campaign=inbazz&utm_content=organico',
+  insider:
+    'https://www.insiderstore.com.br/discount/EMCASACOMCECILIA?redirect=/collections/outlet/?utm_source=influmkt&utm_medium=3c994aaa&utm_campaign=EMCASACOMCECILIA&cupom=EMCASACOMCECILIA',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
   airFryerEbook:
     'mailto:contato@emcasacomcecilia.com?subject=Quero%20saber%20sobre%20o%20E-book%20Air%20Fryer',
