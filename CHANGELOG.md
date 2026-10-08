@@ -8,7 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
-- Cupom Insider (EMCASACOMCECILIA) na seção de cupons, com link que já aplica o código no carrinho. A Insider não permite divulgar percentual, por isso o canhoto diz "Desconto exclusivo".
+- Cupom Insider (EMCASACOMCECILIA, 15% OFF) na seção de cupons, com link que já aplica o código no carrinho.
 - Cupom Let's Eat It (MAUAD, 5% OFF) na seção de cupons.
 - Passo no workflow do YouTube que impede a desativação do agendamento por inatividade.
 - Card de Cupons Magalu nos links principais, com painel de cópia para dez códigos, regras de uso e acesso direto à loja Magazine Você da Cecília.

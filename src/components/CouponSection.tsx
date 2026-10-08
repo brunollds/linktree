@@ -80,12 +80,11 @@ const partners: Partner[] = [
     logo: '/images/logo-i-wanna-sleep.avif',
   },
   {
-    // Insider does not allow percentages in partner copy.
     name: 'Insider',
     description: 'Camisetas e underwear',
     couponCode: 'EMCASACOMCECILIA',
     codeBreakAt: 9,
-    benefit: 'Desconto exclusivo',
+    benefit: '15% OFF',
     href: brandLinks.insider,
     logo: '/images/logo-insider.png',
   },
