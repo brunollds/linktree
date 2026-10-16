@@ -6,7 +6,7 @@ The runnable application lives at the repository root. Run project commands from
 
 - `src/main.tsx` bootstraps the React application.
 - `src/App.tsx` defines the page composition: the orange top band (`Header`, `CouponSection`) followed by the page body (`MainLinks`, `PromoFeed`, `YouTubeSection`, `SocialLinks`, `MediaKit`, `Footer`).
-- `src/components/` contains the page sections and shared UI such as `CouponSheet` (dialog shell) and `CarouselArrows`.
+- `src/components/` contains the page sections and shared UI such as `CouponSheet` (dialog shell) and `CarouselArrows`. Coupon tickets and partner data live in `CouponSection.tsx`; the Magalu, YesStyle and SHEIN panels and their codes live in `CouponSheets.tsx`.
 - `src/styles/` holds the stylesheets, one file per page region (see Styling below). `src/index.css` only imports them.
 - `src/lib/` contains framework-free helpers and hooks: `analytics.ts`, `clipboard.ts`, `useCarousel.ts`.
 - `src/data/site.ts` centralizes official links and shared types; `src/services/dicasOffers.ts` reads and normalizes the live offers feed.
