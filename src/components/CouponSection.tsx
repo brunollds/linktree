@@ -6,7 +6,7 @@ import { trackEvent } from '../lib/analytics';
 import { copyText, useCopiedFlag } from '../lib/clipboard';
 import CouponSheet from './CouponSheet';
 
-type SheetName = 'magalu' | 'yesstyle';
+type SheetName = 'magalu' | 'yesstyle' | 'shein';
 
 interface Partner {
   name: string;
@@ -15,6 +15,8 @@ interface Partner {
   benefit: string;
   href: string;
   logo: string;
+  // What screen readers call the code when it is not a regular coupon.
+  codeNoun?: string;
   // Codes too long for one line in the stub wrap at this index.
   codeBreakAt?: number;
   // Opens an explanation sheet instead of going straight to the store.
@@ -27,7 +29,14 @@ interface MagaluCoupon {
   minimumPurchase: string;
 }
 
+interface SheinCampaign {
+  title: string;
+  detail: string;
+  code: string;
+}
+
 const YESSTYLE_CODE = 'CECILIA010';
+const SHEIN_CODE = '4CW5Y';
 
 const partners: Partner[] = [
   {
@@ -58,6 +67,7 @@ const partners: Partner[] = [
     name: 'YesStyle',
     description: 'Acumula com cupom',
     couponCode: YESSTYLE_CODE,
+    codeNoun: 'Reward Code',
     benefit: 'até 5% OFF',
     href: brandLinks.yesStyle,
     logo: '/images/logo-yesstyle.jpg',
@@ -87,6 +97,75 @@ const partners: Partner[] = [
     benefit: '15% OFF',
     href: brandLinks.insider,
     logo: '/images/logo-insider.png',
+  },
+  {
+    name: 'Cléa Store',
+    description: 'Moda feminina',
+    couponCode: 'CSEMCASACOMCECILIA',
+    codeBreakAt: 8,
+    benefit: '10% OFF',
+    href: brandLinks.cleaStore,
+    logo: '/images/logo-clea-store.png',
+  },
+  {
+    name: 'SHEIN',
+    description: 'Moda, beleza e casa',
+    couponCode: SHEIN_CODE,
+    codeNoun: 'código de indicação',
+    benefit: 'Indicação',
+    href: brandLinks.shein,
+    logo: '/images/logo-shein.png',
+    sheet: 'shein',
+  },
+  {
+    // The discount reaches 10% but can be lower on some items: always "até".
+    name: 'Probiótica',
+    description: 'Colágeno e whey',
+    couponCode: 'PRO10EMCASACOMCECILIA',
+    codeBreakAt: 11,
+    benefit: 'até 10% OFF',
+    href: brandLinks.probiotica,
+    logo: '/images/logo-probiotica.png',
+  },
+  {
+    // Same rule as Probiótica: always "até 10%".
+    name: 'Max Titanium',
+    description: 'Whey e pré-treinos',
+    couponCode: 'MAX10EMCASACOMCECILIA',
+    codeBreakAt: 11,
+    benefit: 'até 10% OFF',
+    href: brandLinks.maxTitanium,
+    logo: '/images/logo-max-titanium.png',
+  },
+  {
+    name: 'Black Skull',
+    description: 'Suplementos',
+    couponCode: 'CECILIA10',
+    benefit: '10% OFF',
+    href: brandLinks.blackSkull,
+    logo: '/images/logo-black-skull.png',
+  },
+  {
+    name: 'Dr. Peanut',
+    description: 'Pasta de amendoim',
+    couponCode: 'DREMCASACOMCECILIA',
+    codeBreakAt: 8,
+    benefit: '10% OFF',
+    href: brandLinks.drPeanut,
+    logo: '/images/logo-dr-peanut.png',
+  },
+];
+
+const sheinCampaigns: SheinCampaign[] = [
+  {
+    title: 'Produtos selecionados',
+    detail: 'Descontos por tempo limitado',
+    code: '37S3442',
+  },
+  {
+    title: '50% para novos usuários',
+    detail: 'Só para contas novas elegíveis',
+    code: 'G326U6B',
   },
 ];
 
@@ -127,7 +206,7 @@ function CouponTicket({
 }) {
   const stubRef = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useCopiedFlag();
-  const { codeBreakAt } = partner;
+  const { codeBreakAt, codeNoun = 'cupom' } = partner;
 
   const handleCopy = async () => {
     await copyText(partner.couponCode);
@@ -171,7 +250,7 @@ function CouponTicket({
         type="button"
         className={`ticket-stub ${copied ? 'is-copied' : ''}`}
         onClick={handleCopy}
-        aria-label={`Copiar cupom ${partner.couponCode} da ${partner.name}, ${partner.benefit}`}
+        aria-label={`Copiar ${codeNoun} ${partner.couponCode} da ${partner.name}, ${partner.benefit}`}
       >
         <span className="ticket-benefit">{partner.benefit}</span>
         <span className={`ticket-code ${codeBreakAt ? 'ticket-code--long' : ''}`}>
@@ -193,7 +272,7 @@ function CouponTicket({
         )}
       </button>
       <span className="sr-only" aria-live="polite">
-        {copied ? `Cupom ${partner.couponCode} copiado` : ''}
+        {copied ? `${partner.couponCode} copiado` : ''}
       </span>
     </article>
   );
@@ -234,6 +313,37 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
         </span>
       </button>
     </article>
+  );
+}
+
+// Lejour is a referral sign-up, not a coupon: the whole ticket is one link and never says "cupom".
+function LejourTicket() {
+  return (
+    <a
+      href={brandLinks.lejour}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ticket coupon-card"
+      aria-label="Lejour: criar o site do casamento e a lista de presentes, com plano grátis"
+      onClick={() => trackEvent('click_referral_link', { partner: 'Lejour', link_url: brandLinks.lejour })}
+    >
+      <span className="ticket-store">
+        <span className="ticket-logo">
+          <img src="/images/logo-lejour.png" alt="" />
+        </span>
+        <span className="ticket-info">
+          <span className="ticket-name">Lejour</span>
+          <span className="ticket-description">Lista de casamento</span>
+        </span>
+      </span>
+      <span className="ticket-stub">
+        <span className="ticket-benefit">Lista grátis</span>
+        <span className="ticket-code">
+          Criar
+          <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
+        </span>
+      </span>
+    </a>
   );
 }
 
@@ -326,6 +436,50 @@ function YesStyleSheet({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
   );
 }
 
+function SheinSheet({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const trackCopy = (code: string) =>
+    trackEvent('copy_coupon', { coupon_code: code, partner: 'SHEIN' });
+
+  return (
+    <CouponSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title={`${SHEIN_CODE} é um código de indicação`}
+      storeHref={brandLinks.shein}
+      storeLabel="Ir para a SHEIN"
+      onStoreClick={() =>
+        trackEvent('click_coupon_store', { partner: 'SHEIN', link_url: brandLinks.shein })
+      }
+    >
+      <p className="sheet-note">
+        Os códigos da SHEIN não vão no campo de cupom: você pesquisa o código na busca do
+        aplicativo. As condições variam por conta e por campanha.
+      </p>
+      <ul className="sheet-list">
+        <li className="sheet-row">
+          <span className="sheet-row-title">Indicação da Cecília</span>
+          <span className="sheet-row-detail">Condições aparecem na sua conta</span>
+          <span className="sheet-row-code">{SHEIN_CODE}</span>
+          <CopyButton code={SHEIN_CODE} onCopied={() => trackCopy(SHEIN_CODE)} />
+        </li>
+        {sheinCampaigns.map((campaign) => (
+          <li key={campaign.code} className="sheet-row">
+            <span className="sheet-row-title">{campaign.title}</span>
+            <span className="sheet-row-detail">{campaign.detail}</span>
+            <span className="sheet-row-code">{campaign.code}</span>
+            <CopyButton code={campaign.code} onCopied={() => trackCopy(campaign.code)} />
+          </li>
+        ))}
+      </ul>
+      <ol className="sheet-steps">
+        <li>Copie o código que quiser usar.</li>
+        <li>No aplicativo da SHEIN, cole o código na busca.</li>
+        <li>Confira as condições e o valor final antes de pagar.</li>
+      </ol>
+    </CouponSheet>
+  );
+}
+
 export default function CouponSection() {
   const listRef = useRef<HTMLDivElement>(null);
   const [openSheet, setOpenSheet] = useState<SheetName | null>(null);
@@ -373,10 +527,12 @@ export default function CouponSection() {
           <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
         <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
+        <LejourTicket />
       </div>
 
       <MagaluSheet isOpen={openSheet === 'magalu'} onClose={closeSheet} />
       <YesStyleSheet isOpen={openSheet === 'yesstyle'} onClose={closeSheet} />
+      <SheinSheet isOpen={openSheet === 'shein'} onClose={closeSheet} />
     </section>
   );
 }

@@ -20,6 +20,13 @@ export interface BrandLinks {
   iWannaSleep: string;
   letsEatIt: string;
   insider: string;
+  cleaStore: string;
+  shein: string;
+  probiotica: string;
+  maxTitanium: string;
+  blackSkull: string;
+  drPeanut: string;
+  lejour: string;
   magalu: string;
   airFryerEbook: string;
 }
@@ -60,6 +67,16 @@ export const brandLinks: BrandLinks = {
     'https://letseatit.com.br/?utm_source=embaixador&utm_medium=emcasacomcecilia&utm_campaign=inbazz&utm_content=organico',
   insider:
     'https://www.insiderstore.com.br/discount/EMCASACOMCECILIA?redirect=/collections/outlet/?utm_source=influmkt&utm_medium=3c994aaa&utm_campaign=EMCASACOMCECILIA&cupom=EMCASACOMCECILIA',
+  cleaStore: 'https://www.cleastore.com.br/',
+  shein:
+    'https://br.shein.com/ark/5231?test=5051&url_from=affiliate_koc_6177013015&scene=1&ad_type=KOC&language=pt-br&siteuid=br&version_bid=101804616,101804641&version_eid=100693341&landing_page_id=5231&ad_test_id=49940&campaign=picklist&koc_id=6177013015&requestId=903986f526dd9d1c&search_redir=1&src_module=search&ici=s1%60EditSearch%604CW5Y%60_fb%60d1%60PageOthers&src_identifier=st%3D2%60sc%3D4CW5Y%60sr%3D0%60ps%3D1&tv_b=2&src_tab_page_id=page_home1786396601153&search_words=4CW5Y&campaign_id=20',
+  probiotica:
+    'https://www.probiotica.com.br?utm_source=creators&utm_medium=PRO10EMCASACOMCECILIA&utm_campaign=probi',
+  maxTitanium: 'https://www.maxtitanium.com.br/',
+  blackSkull: 'https://www.blackskullusa.com.br/',
+  drPeanut: 'https://www.drpeanut.com.br/',
+  lejour:
+    'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
   airFryerEbook:
     'mailto:contato@emcasacomcecilia.com?subject=Quero%20saber%20sobre%20o%20E-book%20Air%20Fryer',
