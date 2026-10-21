@@ -47,7 +47,7 @@ Styles are plain CSS with semantic class names, organized by page region:
 
 Design decisions to preserve:
 
-- Coupons come first and every active partner from the main site's `/cupons` is listed, so each ticket stays a compact 58px row; prefer compact rows over spacious cards everywhere. Partner links are copied exactly from the main site's coupon data. Codes too long for the stub wrap with `codeBreakAt`. Lejour is a referral link and is never called a coupon; Probiótica and Max Titanium always read "até 10%".
+- Coupons come first and every active partner from the main site's `/cupons` is listed (except Hostinger, left out on purpose for now), so each ticket stays a compact 58px row; prefer compact rows over spacious cards everywhere. Partner links are copied exactly from the main site's coupon data. Codes too long for the stub wrap with `codeBreakAt`. Lejour is a referral link and is never called a coupon; Probiótica and Max Titanium always read "até 10%".
 - Bricolage Grotesque for all text (condensed widths for codes and prices); Caveat only for short handwritten notes.
 - Text on orange is navy, never white (contrast). Keep body text at 13px or larger.
 - Motion is limited to the ticket entrance, the copy stamp, the periodic breathing loop in `App.tsx` and the media kit count-up. Every animation must be skipped under `prefers-reduced-motion`.

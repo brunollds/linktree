@@ -153,6 +153,14 @@ const partners: Partner[] = [
     href: brandLinks.maisMu,
     logo: '/images/logo-mais-mu.png',
   },
+  {
+    name: 'Belive',
+    description: 'Doces sem glúten',
+    couponCode: 'MAUAD',
+    benefit: '10% OFF',
+    href: brandLinks.belive,
+    logo: '/images/logo-belive.png',
+  },
 ];
 
 const prefersReducedMotion = () =>

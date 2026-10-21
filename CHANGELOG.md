@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom Belive (MAUAD, 10% OFF) na seção de cupons.
 - Cupom Mais Mu (MMEMCASACOMCECILIA, 10% OFF) na seção de cupons.
 - Cupons Cléa Store (CSEMCASACOMCECILIA, 10%), Probiótica (PRO10EMCASACOMCECILIA, até 10%), Max Titanium (MAX10EMCASACOMCECILIA, até 10%), Black Skull (CECILIA10, 10%) e Dr. Peanut (DREMCASACOMCECILIA, 10%), com os links do site principal sem alteração. Códigos longos quebram em duas linhas no canhoto.
 - SHEIN com painel que explica o código de indicação 4CW5Y e as campanhas 37S3442 e G326U6B, todos pesquisados no aplicativo.
