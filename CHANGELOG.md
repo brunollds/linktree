@@ -27,6 +27,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Workflow de deploy fixado em `ubuntu-24.04`, para a migração do `ubuntu-latest` para o Ubuntu 26 não mudar o ambiente sem aviso.
 - Cupom Nestlé Nutre (CECI) atualizado de 5% para 10% OFF.
 - Redes sociais, mídia kit e rodapé redesenhados; números do mídia kit contam até o valor ao aparecer na tela.
 - Barra do navegador em laranja e descrições de compartilhamento com cupons em primeiro lugar.

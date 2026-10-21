@@ -58,7 +58,7 @@ No automated test framework is currently configured. Treat successful lint and p
 
 ## Deployment
 
-`.github/workflows/sync-youtube-deploy.yml` syncs YouTube videos, builds and deploys `dist/` to Hostinger on Tuesdays, Thursdays and Saturdays, and on manual runs (`gh workflow run sync-youtube-deploy.yml --ref main`). Changes reach production only after they are on `main` and the workflow runs. See `docs/AUTOMACAO-YOUTUBE.md` for secrets and the inactivity safeguard.
+`.github/workflows/sync-youtube-deploy.yml` syncs YouTube videos, builds and deploys `dist/` to Hostinger on Tuesdays, Thursdays and Saturdays, and on manual runs (`gh workflow run sync-youtube-deploy.yml --ref main`). Changes reach production only after they are on `main` and the workflow runs. The job is pinned to `ubuntu-24.04`; move to a newer image deliberately and watch the first deploy. See `docs/AUTOMACAO-YOUTUBE.md` for secrets and the inactivity safeguard.
 
 ## Commit & Pull Request Guidelines
 

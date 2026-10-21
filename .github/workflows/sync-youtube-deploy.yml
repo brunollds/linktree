@@ -19,7 +19,8 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # Pinned so the ubuntu-latest move to Ubuntu 26 can't change the deploy environment unannounced.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
