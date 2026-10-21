@@ -161,6 +161,15 @@ const partners: Partner[] = [
     href: brandLinks.belive,
     logo: '/images/logo-belive.png',
   },
+  {
+    name: 'Skelt',
+    description: 'Autobronzeador',
+    couponCode: 'SKEMCASACOMCECILIA',
+    codeBreakAt: 8,
+    benefit: '10% OFF',
+    href: brandLinks.skelt,
+    logo: '/images/logo-skelt.png',
+  },
 ];
 
 const prefersReducedMotion = () =>

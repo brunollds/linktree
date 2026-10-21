@@ -28,6 +28,7 @@ export interface BrandLinks {
   drPeanut: string;
   maisMu: string;
   belive: string;
+  skelt: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -79,6 +80,8 @@ export const brandLinks: BrandLinks = {
   drPeanut: 'https://www.drpeanut.com.br/',
   maisMu: 'https://www.lojamaismu.com.br/',
   belive: 'https://belivebefree.com.br/',
+  skelt:
+    'https://www.skelt.com.br/?utm_source=creators&utm_medium=SKEMCASACOMCECILIA&utm_campaign=inbazz',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
