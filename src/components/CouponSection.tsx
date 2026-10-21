@@ -144,6 +144,15 @@ const partners: Partner[] = [
     href: brandLinks.drPeanut,
     logo: '/images/logo-dr-peanut.png',
   },
+  {
+    name: 'Mais Mu',
+    description: 'Snacks proteicos',
+    couponCode: 'MMEMCASACOMCECILIA',
+    codeBreakAt: 8,
+    benefit: '10% OFF',
+    href: brandLinks.maisMu,
+    logo: '/images/logo-mais-mu.png',
+  },
 ];
 
 const prefersReducedMotion = () =>

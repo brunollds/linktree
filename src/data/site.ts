@@ -26,6 +26,7 @@ export interface BrandLinks {
   maxTitanium: string;
   blackSkull: string;
   drPeanut: string;
+  maisMu: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -75,6 +76,7 @@ export const brandLinks: BrandLinks = {
   maxTitanium: 'https://www.maxtitanium.com.br/',
   blackSkull: 'https://www.blackskullusa.com.br/',
   drPeanut: 'https://www.drpeanut.com.br/',
+  maisMu: 'https://www.lojamaismu.com.br/',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
