@@ -170,6 +170,14 @@ const partners: Partner[] = [
     href: brandLinks.skelt,
     logo: '/images/logo-skelt.png',
   },
+  {
+    name: 'Bagaggio',
+    description: 'Malas e mochilas',
+    couponCode: 'CECILIA10',
+    benefit: '10% OFF',
+    href: brandLinks.bagaggio,
+    logo: '/images/logo-bagaggio.png',
+  },
 ];
 
 const prefersReducedMotion = () =>

@@ -29,6 +29,7 @@ export interface BrandLinks {
   maisMu: string;
   belive: string;
   skelt: string;
+  bagaggio: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -82,6 +83,8 @@ export const brandLinks: BrandLinks = {
   belive: 'https://belivebefree.com.br/',
   skelt:
     'https://www.skelt.com.br/?utm_source=creators&utm_medium=SKEMCASACOMCECILIA&utm_campaign=inbazz',
+  bagaggio:
+    'https://www.bagaggio.com.br/?utm_source=creators&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
