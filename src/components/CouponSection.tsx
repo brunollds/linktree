@@ -178,6 +178,14 @@ const partners: Partner[] = [
     href: brandLinks.bagaggio,
     logo: '/images/logo-bagaggio.png',
   },
+  {
+    name: 'Toda Up',
+    description: 'Moda íntima',
+    couponCode: 'MAUAD',
+    benefit: '10% OFF',
+    href: brandLinks.todaUp,
+    logo: '/images/logo-toda-up.png',
+  },
 ];
 
 const prefersReducedMotion = () =>

@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom Toda Up (MAUAD, 10% OFF) na seção de cupons, com link que já aplica o código no carrinho.
 - Cupom Bagaggio (CECILIA10, 10% OFF) na seção de cupons.
 - Cupom Skelt (SKEMCASACOMCECILIA, 10% OFF) na seção de cupons.
 - Cupom Belive (MAUAD, 10% OFF) na seção de cupons.

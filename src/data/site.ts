@@ -30,6 +30,7 @@ export interface BrandLinks {
   belive: string;
   skelt: string;
   bagaggio: string;
+  todaUp: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -85,6 +86,8 @@ export const brandLinks: BrandLinks = {
     'https://www.skelt.com.br/?utm_source=creators&utm_medium=SKEMCASACOMCECILIA&utm_campaign=inbazz',
   bagaggio:
     'https://www.bagaggio.com.br/?utm_source=creators&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
+  todaUp:
+    'https://todaup.com/discount/MAUAD?redirect=/collections/squad-toda-up&utm_campaign=fluxoinfluenciadoras&utm_content=mensagem1&utm_medium=influs&utm_source=influs&utm_term=comissao',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
