@@ -49,7 +49,7 @@ const partners: Partner[] = [
     name: 'Dolce Gusto',
     description: 'Cafeteiras e cápsulas',
     couponCode: 'CECI',
-    benefit: '5% OFF',
+    benefit: '10% OFF',
     href: brandLinks.dolceGusto,
     logo: '/images/logo-dolcegusto.avif',
   },
