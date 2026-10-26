@@ -29,6 +29,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Lejour, SHEIN e Magalu passam a ser os três últimos tickets da seção de cupons, nessa ordem.
 - Cupom Dolce Gusto (CECI) atualizado de 5% para 10% OFF.
 - Workflow de deploy fixado em `ubuntu-24.04`, para a migração do `ubuntu-latest` para o Ubuntu 26 não mudar o ambiente sem aviso.
 - Cupom Nestlé Nutre (CECI) atualizado de 5% para 10% OFF.

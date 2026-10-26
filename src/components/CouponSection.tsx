@@ -98,16 +98,6 @@ const partners: Partner[] = [
     logo: '/images/logo-clea-store.png',
   },
   {
-    name: 'SHEIN',
-    description: 'Moda, beleza e casa',
-    couponCode: SHEIN_CODE,
-    codeNoun: 'código de indicação',
-    benefit: 'Indicação',
-    href: brandLinks.shein,
-    logo: '/images/logo-shein.png',
-    sheet: 'shein',
-  },
-  {
     // The discount reaches 10% but can be lower on some items: always "até".
     name: 'Probiótica',
     description: 'Colágeno e whey',
@@ -187,6 +177,18 @@ const partners: Partner[] = [
     logo: '/images/logo-toda-up.png',
   },
 ];
+
+// Rendered after Lejour, just before Magalu, at the end of the list.
+const shein: Partner = {
+  name: 'SHEIN',
+  description: 'Moda, beleza e casa',
+  couponCode: SHEIN_CODE,
+  codeNoun: 'código de indicação',
+  benefit: 'Indicação',
+  href: brandLinks.shein,
+  logo: '/images/logo-shein.png',
+  sheet: 'shein',
+};
 
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -399,8 +401,9 @@ export default function CouponSection() {
         {partners.map((partner) => (
           <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
-        <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
         <LejourTicket />
+        <CouponTicket partner={shein} onOpenSheet={setOpenSheet} />
+        <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
       </div>
 
       <MagaluSheet isOpen={openSheet === 'magalu'} onClose={closeSheet} />
