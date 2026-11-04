@@ -26,7 +26,29 @@ interface Partner {
   codeBreakAt?: number;
   // Opens an explanation sheet instead of going straight to the store.
   sheet?: SheetName;
+  // Higher codes the store runs for a few days; they swap in and out in the browser, no deploy needed.
+  limitedCodes?: LimitedCode[];
 }
+
+interface LimitedCode {
+  couponCode: string;
+  benefit: string;
+  codeBreakAt?: number;
+  // Same windows as the main site, with the -03:00 offset.
+  startsAt: string;
+  endsAt: string;
+}
+
+const pageOpenedAt = Date.now();
+
+function activeLimitedCode(partner: Partner) {
+  return partner.limitedCodes?.find(
+    (code) => pageOpenedAt >= Date.parse(code.startsAt) && pageOpenedAt <= Date.parse(code.endsAt),
+  );
+}
+
+// '2026-11-08T23:59:59-03:00' -> '08/11'
+const formatDayMonth = (isoDate: string) => `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}`;
 
 const partners: Partner[] = [
   {
@@ -78,6 +100,23 @@ const partners: Partner[] = [
     benefit: '10% OFF',
     href: brandLinks.iWannaSleep,
     logo: '/images/logo-i-wanna-sleep.avif',
+    limitedCodes: [
+      {
+        couponCode: 'CECIEMCASA15',
+        codeBreakAt: 10,
+        benefit: '15% OFF',
+        startsAt: '2026-11-04T00:00:00-03:00',
+        endsAt: '2026-11-08T23:59:59-03:00',
+      },
+      {
+        // The store's Black Friday, same code.
+        couponCode: 'CECIEMCASA15',
+        codeBreakAt: 10,
+        benefit: '15% OFF',
+        startsAt: '2026-11-26T00:00:00-03:00',
+        endsAt: '2026-11-27T23:59:59-03:00',
+      },
+    ],
   },
   {
     name: 'Insider',
@@ -176,6 +215,15 @@ const partners: Partner[] = [
     href: brandLinks.todaUp,
     logo: '/images/logo-toda-up.png',
   },
+  {
+    name: 'Simple Organic',
+    description: 'Skincare vegano',
+    couponCode: 'S-EMCASACOMCECILIA',
+    codeBreakAt: 8,
+    benefit: '5% OFF',
+    href: brandLinks.simpleOrganic,
+    logo: '/images/logo-simple-organic.png',
+  },
 ];
 
 // Rendered after Lejour, just before Magalu, at the end of the list.
@@ -214,13 +262,15 @@ function CouponTicket({
 }) {
   const stubRef = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useCopiedFlag();
-  const { codeBreakAt, codeNoun = 'cupom' } = partner;
+  const limited = activeLimitedCode(partner);
+  const { couponCode, benefit, codeBreakAt } = limited ?? partner;
+  const { codeNoun = 'cupom' } = partner;
 
   const handleCopy = async () => {
-    await copyText(partner.couponCode);
+    await copyText(couponCode);
     setCopied(true);
     tugStub(stubRef.current);
-    trackEvent('copy_coupon', { coupon_code: partner.couponCode, partner: partner.name });
+    trackEvent('copy_coupon', { coupon_code: couponCode, partner: partner.name });
   };
 
   const handleStoreClick = (event: React.MouseEvent) => {
@@ -249,7 +299,11 @@ function CouponTicket({
             {partner.name}
             <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
           </span>
-          <span className="ticket-description">{partner.description}</span>
+          {limited ? (
+            <span className="ticket-chip">Aumento até {formatDayMonth(limited.endsAt)}</span>
+          ) : (
+            <span className="ticket-description">{partner.description}</span>
+          )}
         </span>
       </a>
 
@@ -258,18 +312,20 @@ function CouponTicket({
         type="button"
         className={`ticket-stub ${copied ? 'is-copied' : ''}`}
         onClick={handleCopy}
-        aria-label={`Copiar ${codeNoun} ${partner.couponCode} da ${partner.name}, ${partner.benefit}`}
+        aria-label={`Copiar ${codeNoun} ${couponCode} da ${partner.name}, ${benefit}${
+          limited ? ` até ${formatDayMonth(limited.endsAt)}` : ''
+        }`}
       >
-        <span className="ticket-benefit">{partner.benefit}</span>
+        <span className="ticket-benefit">{benefit}</span>
         <span className={`ticket-code ${codeBreakAt ? 'ticket-code--long' : ''}`}>
           {codeBreakAt ? (
             <span>
-              {partner.couponCode.slice(0, codeBreakAt)}
+              {couponCode.slice(0, codeBreakAt)}
               <wbr />
-              {partner.couponCode.slice(codeBreakAt)}
+              {couponCode.slice(codeBreakAt)}
             </span>
           ) : (
-            partner.couponCode
+            couponCode
           )}
           <Copy size={13} strokeWidth={2.2} aria-hidden="true" />
         </span>
@@ -280,7 +336,7 @@ function CouponTicket({
         )}
       </button>
       <span className="sr-only" aria-live="polite">
-        {copied ? `${partner.couponCode} copiado` : ''}
+        {copied ? `${couponCode} copiado` : ''}
       </span>
     </article>
   );

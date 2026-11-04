@@ -31,6 +31,7 @@ export interface BrandLinks {
   skelt: string;
   bagaggio: string;
   todaUp: string;
+  simpleOrganic: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -88,6 +89,8 @@ export const brandLinks: BrandLinks = {
     'https://www.bagaggio.com.br/?utm_source=creators&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
   todaUp:
     'https://todaup.com/discount/MAUAD?redirect=/collections/squad-toda-up&utm_campaign=fluxoinfluenciadoras&utm_content=mensagem1&utm_medium=influs&utm_source=influs&utm_term=comissao',
+  // Double slash as the partner sent it; the main site keeps it too.
+  simpleOrganic: 'https://simpleorganic.com.br//discount/S-EMCASACOMCECILIA',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
