@@ -32,6 +32,7 @@ export interface BrandLinks {
   bagaggio: string;
   todaUp: string;
   simpleOrganic: string;
+  holyFoods: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -91,6 +92,8 @@ export const brandLinks: BrandLinks = {
     'https://todaup.com/discount/MAUAD?redirect=/collections/squad-toda-up&utm_campaign=fluxoinfluenciadoras&utm_content=mensagem1&utm_medium=influs&utm_source=influs&utm_term=comissao',
   // Double slash as the partner sent it; the main site keeps it too.
   simpleOrganic: 'https://simpleorganic.com.br//discount/S-EMCASACOMCECILIA',
+  holyFoods:
+    'https://www.holyfoods.com.br/?utm_source=afiliados&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',

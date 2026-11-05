@@ -224,6 +224,14 @@ const partners: Partner[] = [
     href: brandLinks.simpleOrganic,
     logo: '/images/logo-simple-organic.png',
   },
+  {
+    name: 'HolyFoods',
+    description: 'Sopas e risotos',
+    couponCode: 'EMCASA',
+    benefit: '15% OFF',
+    href: brandLinks.holyFoods,
+    logo: '/images/logo-holyfoods.png',
+  },
 ];
 
 // Rendered after Lejour, just before Magalu, at the end of the list.

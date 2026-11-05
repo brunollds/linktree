@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom HolyFoods (EMCASA, 15% OFF) na seção de cupons.
 - Cupom Simple Organic (S-EMCASACOMCECILIA, 5% OFF) na seção de cupons, com link que já aplica o código.
 - Códigos com prazo: a I Wanna Sleep mostra CECIEMCASA15 (15% OFF) com o chip "Aumento até 08/11" de 04 a 08/11 e de novo em 26 e 27/11, e volta sozinha ao CECIEMCASA (10%) fora dessas datas.
 - Cupom Toda Up (MAUAD, 10% OFF) na seção de cupons, com link que já aplica o código no carrinho.
