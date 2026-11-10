@@ -33,6 +33,7 @@ export interface BrandLinks {
   todaUp: string;
   simpleOrganic: string;
   holyFoods: string;
+  hostinger: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -94,6 +95,7 @@ export const brandLinks: BrandLinks = {
   simpleOrganic: 'https://simpleorganic.com.br//discount/S-EMCASACOMCECILIA',
   holyFoods:
     'https://www.holyfoods.com.br/?utm_source=afiliados&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
+  hostinger: 'https://www.hostinger.com/br?REFERRALCODE=SONAR20',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',

@@ -232,19 +232,37 @@ const partners: Partner[] = [
     href: brandLinks.holyFoods,
     logo: '/images/logo-holyfoods.png',
   },
+  {
+    name: 'Hostinger',
+    description: 'Sites e domínios',
+    couponCode: 'SONAR20',
+    benefit: '20% OFF',
+    href: brandLinks.hostinger,
+    logo: '/images/logo-hostinger.png',
+  },
+  {
+    name: 'SHEIN',
+    description: 'Moda, beleza e casa',
+    couponCode: SHEIN_CODE,
+    codeNoun: 'código de indicação',
+    benefit: 'Promo exclusiva',
+    href: brandLinks.shein,
+    logo: '/images/logo-shein.png',
+    sheet: 'shein',
+  },
 ];
 
-// Rendered after Lejour, just before Magalu, at the end of the list.
-const shein: Partner = {
-  name: 'SHEIN',
-  description: 'Moda, beleza e casa',
-  couponCode: SHEIN_CODE,
-  codeNoun: 'código de indicação',
-  benefit: 'Indicação',
-  href: brandLinks.shein,
-  logo: '/images/logo-shein.png',
-  sheet: 'shein',
+// Damie and Insider stay on top; the rest is A-Z, so a new partner needs no placement decision.
+const TOP_PARTNERS = ['Damie', 'Insider'];
+
+const topRank = (partner: Partner) => {
+  const index = TOP_PARTNERS.indexOf(partner.name);
+  return index === -1 ? TOP_PARTNERS.length : index;
 };
+
+const orderedPartners = [...partners].sort(
+  (a, b) => topRank(a) - topRank(b) || a.name.localeCompare(b.name, 'pt-BR'),
+);
 
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -462,11 +480,10 @@ export default function CouponSection() {
       </div>
 
       <div ref={listRef} className="ticket-list">
-        {partners.map((partner) => (
+        {orderedPartners.map((partner) => (
           <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
         <LejourTicket />
-        <CouponTicket partner={shein} onOpenSheet={setOpenSheet} />
         <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
       </div>
 

@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom Hostinger (SONAR20, 20% OFF) na seção de cupons, com link de indicação que já leva o código.
 - Cupom HolyFoods (EMCASA, 15% OFF) na seção de cupons.
 - Cupom Simple Organic (S-EMCASACOMCECILIA, 5% OFF) na seção de cupons, com link que já aplica o código.
 - Códigos com prazo: a I Wanna Sleep mostra CECIEMCASA15 (15% OFF) com o chip "Aumento até 08/11" de 04 a 08/11 e de novo em 26 e 27/11, e volta sozinha ao CECIEMCASA (10%) fora dessas datas.
@@ -32,7 +33,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
-- Lejour, SHEIN e Magalu passam a ser os três últimos tickets da seção de cupons, nessa ordem.
+- Ordem dos cupons: Damie e Insider no topo, os demais em ordem alfabética, Lejour e Magalu por último.
+- Ticket da SHEIN passa a mostrar "Promo exclusiva" no lugar de "Indicação".
 - Cupom Dolce Gusto (CECI) atualizado de 5% para 10% OFF.
 - Workflow de deploy fixado em `ubuntu-24.04`, para a migração do `ubuntu-latest` para o Ubuntu 26 não mudar o ambiente sem aviso.
 - Cupom Nestlé Nutre (CECI) atualizado de 5% para 10% OFF.
