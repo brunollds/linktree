@@ -33,6 +33,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- I Wanna Sleep mostra CECIEMCASA11 (11% OFF) com o chip "Aumento até 11/11" só em 11/11, até 23h59.
 - Ordem dos cupons: Damie e Insider no topo, os demais em ordem alfabética, Lejour e Magalu por último.
 - Ticket da SHEIN passa a mostrar "Promo exclusiva" no lugar de "Indicação".
 - Cupom Dolce Gusto (CECI) atualizado de 5% para 10% OFF.

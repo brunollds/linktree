@@ -109,6 +109,14 @@ const partners: Partner[] = [
         endsAt: '2026-11-08T23:59:59-03:00',
       },
       {
+        // 11.11, sent by the store; not on the main site.
+        couponCode: 'CECIEMCASA11',
+        codeBreakAt: 10,
+        benefit: '11% OFF',
+        startsAt: '2026-11-11T00:00:00-03:00',
+        endsAt: '2026-11-11T23:59:59-03:00',
+      },
+      {
         // The store's Black Friday, same code.
         couponCode: 'CECIEMCASA15',
         codeBreakAt: 10,
