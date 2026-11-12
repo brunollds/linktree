@@ -36,19 +36,28 @@ interface LimitedCode {
   codeBreakAt?: number;
   // Same windows as the main site, with the -03:00 offset.
   startsAt: string;
-  endsAt: string;
+  // Left out while the store hasn't said when it ends; remove the entry once it does.
+  endsAt?: string;
 }
 
 const pageOpenedAt = Date.now();
 
 function activeLimitedCode(partner: Partner) {
   return partner.limitedCodes?.find(
-    (code) => pageOpenedAt >= Date.parse(code.startsAt) && pageOpenedAt <= Date.parse(code.endsAt),
+    (code) =>
+      pageOpenedAt >= Date.parse(code.startsAt) &&
+      (!code.endsAt || pageOpenedAt <= Date.parse(code.endsAt)),
   );
 }
 
 // '2026-11-08T23:59:59-03:00' -> '08/11'
 const formatDayMonth = (isoDate: string) => `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}`;
+
+const limitedChipText = ({ endsAt }: LimitedCode) =>
+  endsAt ? `Aumento até ${formatDayMonth(endsAt)}` : 'Tempo limitado';
+
+const limitedLabelSuffix = ({ endsAt }: LimitedCode) =>
+  endsAt ? ` até ${formatDayMonth(endsAt)}` : ', por tempo limitado';
 
 const partners: Partner[] = [
   {
@@ -222,6 +231,22 @@ const partners: Partner[] = [
     benefit: '10% OFF',
     href: brandLinks.todaUp,
     logo: '/images/logo-toda-up.png',
+    limitedCodes: [
+      {
+        // The store raised MAUAD to 15% without an end date; the main site still says 10%.
+        couponCode: 'MAUAD',
+        benefit: '15% OFF',
+        startsAt: '2026-11-11T00:00:00-03:00',
+      },
+    ],
+  },
+  {
+    name: 'Petz',
+    description: 'Pet shop',
+    couponCode: 'EMCASA',
+    benefit: '10% OFF',
+    href: brandLinks.petz,
+    logo: '/images/logo-petz.png',
   },
   {
     name: 'Simple Organic',
@@ -334,7 +359,7 @@ function CouponTicket({
             <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
           </span>
           {limited ? (
-            <span className="ticket-chip">Aumento até {formatDayMonth(limited.endsAt)}</span>
+            <span className="ticket-chip">{limitedChipText(limited)}</span>
           ) : (
             <span className="ticket-description">{partner.description}</span>
           )}
@@ -347,7 +372,7 @@ function CouponTicket({
         className={`ticket-stub ${copied ? 'is-copied' : ''}`}
         onClick={handleCopy}
         aria-label={`Copiar ${codeNoun} ${couponCode} da ${partner.name}, ${benefit}${
-          limited ? ` até ${formatDayMonth(limited.endsAt)}` : ''
+          limited ? limitedLabelSuffix(limited) : ''
         }`}
       >
         <span className="ticket-benefit">{benefit}</span>

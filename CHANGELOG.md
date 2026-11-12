@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupom Petz (EMCASA, 10% OFF) na seção de cupons, com o link da loja da Cecília no Parceiro Petz.
 - Cupom Hostinger (SONAR20, 20% OFF) na seção de cupons, com link de indicação que já leva o código.
 - Cupom HolyFoods (EMCASA, 15% OFF) na seção de cupons.
 - Cupom Simple Organic (S-EMCASACOMCECILIA, 5% OFF) na seção de cupons, com link que já aplica o código.
@@ -33,6 +34,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Toda Up mostra MAUAD com 15% OFF e o chip "Tempo limitado" a partir de 11/11, sem data de fim; códigos com prazo aceitam ficar sem data de fim.
 - I Wanna Sleep mostra CECIEMCASA11 (11% OFF) com o chip "Aumento até 11/11" só em 11/11, até 23h59.
 - Ordem dos cupons: Damie e Insider no topo, os demais em ordem alfabética, Lejour e Magalu por último.
 - Ticket da SHEIN passa a mostrar "Promo exclusiva" no lugar de "Indicação".

@@ -34,6 +34,7 @@ export interface BrandLinks {
   simpleOrganic: string;
   holyFoods: string;
   hostinger: string;
+  petz: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -96,6 +97,8 @@ export const brandLinks: BrandLinks = {
   holyFoods:
     'https://www.holyfoods.com.br/?utm_source=afiliados&utm_medium=emcasacomcecilia&utm_campaign=inbazz',
   hostinger: 'https://www.hostinger.com/br?REFERRALCODE=SONAR20',
+  // Marks the sale for the partnership but doesn't apply the code.
+  petz: 'https://petz.com.br/parceiro/emcasa',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',

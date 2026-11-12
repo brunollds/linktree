@@ -229,13 +229,17 @@
 
 .ticket-chip {
   align-self: flex-start;
+  max-width: 100%;
+  overflow: hidden;
   padding: 0 6px;
   border-radius: 999px;
   background: var(--gema);
   color: var(--marinho);
   font-size: 13px;
+  font-stretch: 75%;
   font-weight: 700;
   line-height: 1.3;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
