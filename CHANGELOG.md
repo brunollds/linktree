@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupons La Ganexa (CECILIA, 10% OFF) e Prohall (CECILIAMC, até 10% OFF) na seção de cupons.
 - Cupom Petz (EMCASA, 10% OFF) na seção de cupons, com o link da loja da Cecília no Parceiro Petz.
 - Cupom Hostinger (SONAR20, 20% OFF) na seção de cupons, com link de indicação que já leva o código.
 - Cupom HolyFoods (EMCASA, 15% OFF) na seção de cupons.

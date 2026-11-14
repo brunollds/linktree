@@ -35,6 +35,8 @@ export interface BrandLinks {
   holyFoods: string;
   hostinger: string;
   petz: string;
+  laGanexa: string;
+  prohall: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -99,6 +101,8 @@ export const brandLinks: BrandLinks = {
   hostinger: 'https://www.hostinger.com/br?REFERRALCODE=SONAR20',
   // Marks the sale for the partnership but doesn't apply the code.
   petz: 'https://petz.com.br/parceiro/emcasa',
+  laGanexa: 'https://lojalaganexa.com.br/',
+  prohall: 'https://lojaprohall.com.br/',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',

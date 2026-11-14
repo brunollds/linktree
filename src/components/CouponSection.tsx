@@ -249,6 +249,23 @@ const partners: Partner[] = [
     logo: '/images/logo-petz.png',
   },
   {
+    name: 'La Ganexa',
+    description: 'Doces zero açúcar',
+    couponCode: 'CECILIA',
+    benefit: '10% OFF',
+    href: brandLinks.laGanexa,
+    logo: '/images/logo-la-ganexa.png',
+  },
+  {
+    // The main site says "até 10%": its tests got 7%.
+    name: 'Prohall',
+    description: 'Cabelos',
+    couponCode: 'CECILIAMC',
+    benefit: 'até 10% OFF',
+    href: brandLinks.prohall,
+    logo: '/images/logo-prohall.png',
+  },
+  {
     name: 'Simple Organic',
     description: 'Skincare vegano',
     couponCode: 'S-EMCASACOMCECILIA',
