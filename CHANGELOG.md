@@ -8,6 +8,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Added
 
+- Cupons BAW Clothing (BAWEMCASACOMCECILIA, 10%), L'Amazonie (CECILIA, 5%), Rituária (EMCASA, 10%), Adaptogen (CECILIA, 10%), Barbour's Beauty (CECILIALINHARES, 10%) e BOLD Snacks (CECILIA15, 20%), com os links do site principal sem alteração.
+- Proton como ticket de link (VPN, e-mail e senhas), sem código e sem ser chamada de cupom, antes da Lejour.
 - Cupons La Ganexa (CECILIA, 10% OFF) e Prohall (CECILIAMC, até 10% OFF) na seção de cupons.
 - Cupom Petz (EMCASA, 10% OFF) na seção de cupons, com o link da loja da Cecília no Parceiro Petz.
 - Cupom Hostinger (SONAR20, 20% OFF) na seção de cupons, com link de indicação que já leva o código.
@@ -35,6 +37,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- Toda Up volta a mostrar MAUAD com 10% OFF, sem o chip "Tempo limitado".
+- Tickets de link (Proton e Lejour) passam a usar o mesmo componente `ReferralTicket`.
 - Toda Up mostra MAUAD com 15% OFF e o chip "Tempo limitado" a partir de 11/11, sem data de fim; códigos com prazo aceitam ficar sem data de fim.
 - I Wanna Sleep mostra CECIEMCASA11 (11% OFF) com o chip "Aumento até 11/11" só em 11/11, até 23h59.
 - Ordem dos cupons: Damie e Insider no topo, os demais em ordem alfabética, Lejour e Magalu por último.

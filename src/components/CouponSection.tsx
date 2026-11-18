@@ -231,14 +231,6 @@ const partners: Partner[] = [
     benefit: '10% OFF',
     href: brandLinks.todaUp,
     logo: '/images/logo-toda-up.png',
-    limitedCodes: [
-      {
-        // The store raised MAUAD to 15% without an end date; the main site still says 10%.
-        couponCode: 'MAUAD',
-        benefit: '15% OFF',
-        startsAt: '2026-11-11T00:00:00-03:00',
-      },
-    ],
   },
   {
     name: 'Petz',
@@ -289,6 +281,57 @@ const partners: Partner[] = [
     benefit: '20% OFF',
     href: brandLinks.hostinger,
     logo: '/images/logo-hostinger.png',
+  },
+  {
+    name: 'BAW Clothing',
+    description: 'Streetwear',
+    couponCode: 'BAWEMCASACOMCECILIA',
+    codeBreakAt: 9,
+    benefit: '10% OFF',
+    href: brandLinks.baw,
+    logo: '/images/logo-baw.png',
+  },
+  {
+    name: "L'Amazonie",
+    description: 'Skincare',
+    couponCode: 'CECILIA',
+    benefit: '5% OFF',
+    href: brandLinks.lamazonie,
+    logo: '/images/logo-lamazonie.png',
+  },
+  {
+    name: 'Rituária',
+    description: 'Suplementos',
+    couponCode: 'EMCASA',
+    benefit: '10% OFF',
+    href: brandLinks.rituaria,
+    logo: '/images/logo-rituaria.png',
+  },
+  {
+    name: 'Adaptogen',
+    description: 'Whey e creatina',
+    couponCode: 'CECILIA',
+    benefit: '10% OFF',
+    href: brandLinks.adaptogen,
+    logo: '/images/logo-adaptogen.png',
+  },
+  {
+    name: "Barbour's Beauty",
+    description: 'Body splash',
+    couponCode: 'CECILIALINHARES',
+    codeBreakAt: 7,
+    benefit: '10% OFF',
+    href: brandLinks.barbours,
+    logo: '/images/logo-barbours.png',
+  },
+  {
+    // The code says 15 but the store gives 20%, as tested on the main site.
+    name: 'BOLD Snacks',
+    description: 'Barras de proteína',
+    couponCode: 'CECILIA15',
+    benefit: '20% OFF',
+    href: brandLinks.bold,
+    logo: '/images/logo-bold.png',
   },
   {
     name: 'SHEIN',
@@ -456,30 +499,63 @@ function MagaluTicket({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-// Lejour is a referral sign-up, not a coupon: the whole ticket is one link and never says "cupom".
-function LejourTicket() {
+interface Referral {
+  name: string;
+  description: string;
+  benefit: string;
+  action: string;
+  href: string;
+  logo: string;
+  label: string;
+}
+
+// Affiliate links with no code of ours: the whole ticket is one link and never says "cupom".
+const referrals: Referral[] = [
+  {
+    name: 'Proton',
+    description: 'VPN, e-mail e senhas',
+    benefit: 'Garantia 30 dias',
+    action: 'Ver planos',
+    href: brandLinks.proton,
+    logo: '/images/logo-proton.png',
+    label: 'Proton: ver os planos de VPN, e-mail e senhas, com reembolso em até 30 dias',
+  },
+  {
+    name: 'Lejour',
+    description: 'Lista de casamento',
+    benefit: 'Lista grátis',
+    action: 'Criar',
+    href: brandLinks.lejour,
+    logo: '/images/logo-lejour.png',
+    label: 'Lejour: criar o site do casamento e a lista de presentes, com plano grátis',
+  },
+];
+
+function ReferralTicket({ referral }: { referral: Referral }) {
   return (
     <a
-      href={brandLinks.lejour}
+      href={referral.href}
       target="_blank"
       rel="noopener noreferrer"
       className="ticket coupon-card"
-      aria-label="Lejour: criar o site do casamento e a lista de presentes, com plano grátis"
-      onClick={() => trackEvent('click_referral_link', { partner: 'Lejour', link_url: brandLinks.lejour })}
+      aria-label={referral.label}
+      onClick={() =>
+        trackEvent('click_referral_link', { partner: referral.name, link_url: referral.href })
+      }
     >
       <span className="ticket-store">
         <span className="ticket-logo">
-          <img src="/images/logo-lejour.png" alt="" />
+          <img src={referral.logo} alt="" />
         </span>
         <span className="ticket-info">
-          <span className="ticket-name">Lejour</span>
-          <span className="ticket-description">Lista de casamento</span>
+          <span className="ticket-name">{referral.name}</span>
+          <span className="ticket-description">{referral.description}</span>
         </span>
       </span>
       <span className="ticket-stub">
-        <span className="ticket-benefit">Lista grátis</span>
+        <span className="ticket-benefit">{referral.benefit}</span>
         <span className="ticket-code">
-          Criar
+          {referral.action}
           <ArrowUpRight size={15} strokeWidth={2.4} aria-hidden="true" />
         </span>
       </span>
@@ -533,7 +609,9 @@ export default function CouponSection() {
         {orderedPartners.map((partner) => (
           <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
-        <LejourTicket />
+        {referrals.map((referral) => (
+          <ReferralTicket key={referral.name} referral={referral} />
+        ))}
         <MagaluTicket onOpen={() => setOpenSheet('magalu')} />
       </div>
 

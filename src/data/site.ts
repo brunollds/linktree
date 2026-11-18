@@ -37,6 +37,13 @@ export interface BrandLinks {
   petz: string;
   laGanexa: string;
   prohall: string;
+  baw: string;
+  lamazonie: string;
+  rituaria: string;
+  adaptogen: string;
+  barbours: string;
+  bold: string;
+  proton: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -103,6 +110,13 @@ export const brandLinks: BrandLinks = {
   petz: 'https://petz.com.br/parceiro/emcasa',
   laGanexa: 'https://lojalaganexa.com.br/',
   prohall: 'https://lojaprohall.com.br/',
+  baw: 'https://www.bawclothing.com.br/',
+  lamazonie: 'https://www.lamazonie.com.br/',
+  rituaria: 'https://www.rituaria.com.br/',
+  adaptogen: 'https://www.adaptogen.com.br/?parceiro=CECILIA',
+  barbours: 'https://barbours.gogroup.com.br/emcasacomcecilia',
+  bold: 'https://www.boldsnacks.com.br/discount/CECILIA15',
+  proton: 'https://go.getproton.me/SH39K',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
