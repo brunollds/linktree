@@ -124,7 +124,7 @@ export const brandLinks: BrandLinks = {
   proton: 'https://go.getproton.me/SH39K',
   protonMail: 'https://go.getproton.me/SH39L',
   protonPass: 'https://go.getproton.me/SH39M',
-  protonDrive: 'https://go.getproton.me/aff_c?offer_id=43&aff_id=22004',
+  protonDrive: 'https://go.getproton.me/SH39N',
   protonLumo: 'https://go.getproton.me/SH39O',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
