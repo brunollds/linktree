@@ -9,7 +9,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 ### Added
 
 - Cupons BAW Clothing (BAWEMCASACOMCECILIA, 10%), L'Amazonie (CECILIA, 5%), Rituária (EMCASA, 10%), Adaptogen (CECILIA, 10%), Barbour's Beauty (CECILIALINHARES, 10%) e BOLD Snacks (CECILIA15, 20%), com os links do site principal sem alteração.
-- Proton como ticket de link (VPN, e-mail e senhas), sem código e sem ser chamada de cupom, antes da Lejour.
+- Proton como ticket de link (VPN, e-mail e senhas, até 75% OFF), sem código e sem ser chamada de cupom, antes da Lejour.
 - Cupons La Ganexa (CECILIA, 10% OFF) e Prohall (CECILIAMC, até 10% OFF) na seção de cupons.
 - Cupom Petz (EMCASA, 10% OFF) na seção de cupons, com o link da loja da Cecília no Parceiro Petz.
 - Cupom Hostinger (SONAR20, 20% OFF) na seção de cupons, com link de indicação que já leva o código.

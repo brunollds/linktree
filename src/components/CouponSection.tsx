@@ -514,11 +514,11 @@ const referrals: Referral[] = [
   {
     name: 'Proton',
     description: 'VPN, e-mail e senhas',
-    benefit: 'Garantia 30 dias',
+    benefit: 'até 75% OFF',
     action: 'Ver planos',
     href: brandLinks.proton,
     logo: '/images/logo-proton.png',
-    label: 'Proton: ver os planos de VPN, e-mail e senhas, com reembolso em até 30 dias',
+    label: 'Proton: ver os planos de VPN, e-mail e senhas, com até 75% OFF',
   },
   {
     name: 'Lejour',
