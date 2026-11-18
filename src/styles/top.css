@@ -151,6 +151,10 @@
   box-shadow: 0 2px 0 rgba(19, 35, 74, 0.22);
 }
 
+button.ticket {
+  text-align: left;
+}
+
 .ticket-store {
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);

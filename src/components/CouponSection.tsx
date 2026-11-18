@@ -6,6 +6,7 @@ import { trackEvent } from '../lib/analytics';
 import { copyText, useCopiedFlag } from '../lib/clipboard';
 import {
   MagaluSheet,
+  ProtonSheet,
   SHEIN_CODE,
   SheinSheet,
   YESSTYLE_CODE,
@@ -509,17 +510,37 @@ interface Referral {
   label: string;
 }
 
+// Proton has one affiliate link per product and no code: the whole ticket opens the sheet that lists them.
+function ProtonTicket({ onOpen }: { onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      className="ticket coupon-card"
+      onClick={onOpen}
+      aria-label="Proton: ver os links de VPN, Mail, Pass, Drive e Lumo, com até 75% OFF"
+    >
+      <span className="ticket-store">
+        <span className="ticket-logo">
+          <img src="/images/logo-proton.png" alt="" />
+        </span>
+        <span className="ticket-info">
+          <span className="ticket-name">Proton</span>
+          <span className="ticket-description">VPN, e-mail e senhas</span>
+        </span>
+      </span>
+      <span className="ticket-stub">
+        <span className="ticket-benefit">até 75% OFF</span>
+        <span className="ticket-code">
+          Ver links
+          <ChevronRight size={15} strokeWidth={2.4} aria-hidden="true" />
+        </span>
+      </span>
+    </button>
+  );
+}
+
 // Affiliate links with no code of ours: the whole ticket is one link and never says "cupom".
 const referrals: Referral[] = [
-  {
-    name: 'Proton',
-    description: 'VPN, e-mail e senhas',
-    benefit: 'até 75% OFF',
-    action: 'Ver planos',
-    href: brandLinks.proton,
-    logo: '/images/logo-proton.png',
-    label: 'Proton: ver os planos de VPN, e-mail e senhas, com até 75% OFF',
-  },
   {
     name: 'Lejour',
     description: 'Lista de casamento',
@@ -609,6 +630,7 @@ export default function CouponSection() {
         {orderedPartners.map((partner) => (
           <CouponTicket key={partner.name} partner={partner} onOpenSheet={setOpenSheet} />
         ))}
+        <ProtonTicket onOpen={() => setOpenSheet('proton')} />
         {referrals.map((referral) => (
           <ReferralTicket key={referral.name} referral={referral} />
         ))}
@@ -616,6 +638,7 @@ export default function CouponSection() {
       </div>
 
       <MagaluSheet isOpen={openSheet === 'magalu'} onClose={closeSheet} />
+      <ProtonSheet isOpen={openSheet === 'proton'} onClose={closeSheet} />
       <YesStyleSheet isOpen={openSheet === 'yesstyle'} onClose={closeSheet} />
       <SheinSheet isOpen={openSheet === 'shein'} onClose={closeSheet} />
     </section>

@@ -1,10 +1,10 @@
-import { Check, Copy } from 'lucide-react';
+import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { brandLinks } from '../data/site';
 import { trackEvent } from '../lib/analytics';
 import { copyText, useCopiedFlag } from '../lib/clipboard';
 import CouponSheet from './CouponSheet';
 
-export type SheetName = 'magalu' | 'yesstyle' | 'shein';
+export type SheetName = 'magalu' | 'yesstyle' | 'shein' | 'proton';
 
 interface SheetProps {
   isOpen: boolean;
@@ -37,6 +37,20 @@ const sheinCampaigns: SheinCampaign[] = [
     detail: 'Só para contas novas elegíveis',
     code: 'G326U6B',
   },
+];
+
+interface ProtonProduct {
+  name: string;
+  detail: string;
+  href: string;
+}
+
+const protonProducts: ProtonProduct[] = [
+  { name: 'Proton VPN', detail: 'até 75% OFF', href: brandLinks.proton },
+  { name: 'Proton Mail', detail: 'até 60% OFF', href: brandLinks.protonMail },
+  { name: 'Proton Pass', detail: 'até 60% OFF', href: brandLinks.protonPass },
+  { name: 'Proton Drive', detail: 'até 60% OFF', href: brandLinks.protonDrive },
+  { name: 'Lumo', detail: 'Assistente de IA', href: brandLinks.protonLumo },
 ];
 
 const magaluCoupons: MagaluCoupon[] = [
@@ -95,6 +109,45 @@ export function MagaluSheet({ isOpen, onClose }: SheetProps) {
               code={coupon.code}
               onCopied={() => trackEvent('copy_magalu_coupon', { coupon_code: coupon.code })}
             />
+          </li>
+        ))}
+      </ul>
+    </CouponSheet>
+  );
+}
+
+export function ProtonSheet({ isOpen, onClose }: SheetProps) {
+  const trackClick = (product: string, href: string) =>
+    trackEvent('click_referral_link', { partner: 'Proton', product, link_url: href });
+
+  return (
+    <CouponSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Meus links da Proton"
+      storeHref={brandLinks.proton}
+      storeLabel="Ir para a Proton"
+      onStoreClick={() => trackClick('Proton VPN', brandLinks.proton)}
+    >
+      <p className="sheet-note">
+        Não tem código para copiar: o desconto já vem no link. Cada produto tem o seu.
+      </p>
+      <ul className="sheet-list">
+        {protonProducts.map((product) => (
+          <li key={product.name} className="sheet-row">
+            <span className="sheet-row-title">{product.name}</span>
+            <span className="sheet-row-detail">{product.detail}</span>
+            <a
+              href={product.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sheet-copy"
+              aria-label={`Abrir ${product.name}`}
+              onClick={() => trackClick(product.name, product.href)}
+            >
+              Abrir
+              <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
+            </a>
           </li>
         ))}
       </ul>

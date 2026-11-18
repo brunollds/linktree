@@ -44,6 +44,10 @@ export interface BrandLinks {
   barbours: string;
   bold: string;
   proton: string;
+  protonMail: string;
+  protonPass: string;
+  protonDrive: string;
+  protonLumo: string;
   lejour: string;
   magalu: string;
   airFryerEbook: string;
@@ -116,7 +120,12 @@ export const brandLinks: BrandLinks = {
   adaptogen: 'https://www.adaptogen.com.br/?parceiro=CECILIA',
   barbours: 'https://barbours.gogroup.com.br/emcasacomcecilia',
   bold: 'https://www.boldsnacks.com.br/discount/CECILIA15',
+  // One affiliate link per Proton product; this one is the VPN and also leads to Proton Unlimited.
   proton: 'https://go.getproton.me/SH39K',
+  protonMail: 'https://go.getproton.me/SH39L',
+  protonPass: 'https://go.getproton.me/SH39M',
+  protonDrive: 'https://go.getproton.me/aff_c?offer_id=43&aff_id=22004',
+  protonLumo: 'https://go.getproton.me/SH39O',
   lejour:
     'https://painel.lejour.com.br/onboarding/inicio?affiliate=emcasacomcecilia&source=the-coachers',
   magalu: 'https://www.magazinevoce.com.br/magazineemcasacomcecilia/',
